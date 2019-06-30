@@ -9,6 +9,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         release {
@@ -18,8 +24,6 @@ android {
     }
 }
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -10,10 +10,10 @@ public class offer_6_ConstructBinaryTree {
 
     /**
      * 构建二叉树
-     * A
-     * B       C
-     * D       E      F
-     * G       H     I
+     *          A
+     *      B       C
+     *   D       E      F
+     * G  H    I
      */
     public void createBinaryTree() {
         root = new BinaryTreeNode("A");

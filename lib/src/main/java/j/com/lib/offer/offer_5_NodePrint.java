@@ -2,7 +2,7 @@ package j.com.lib.offer;
 
 import java.util.Stack;
 
-import j.com.lib.node.ListNode;
+import j.com.lib.bean.ListNode;
 
 /**
  * Created by pepys on 2019/6/25

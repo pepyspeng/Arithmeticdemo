@@ -3,7 +3,7 @@ package j.com.lib.sort;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-import j.com.lib.stack.TreeNode;
+import j.com.lib.bean.TreeNode;
 
 public class Sort {
 

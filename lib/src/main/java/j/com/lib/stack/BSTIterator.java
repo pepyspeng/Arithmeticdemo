@@ -2,6 +2,8 @@ package j.com.lib.stack;
 
 import java.util.Stack;
 
+import j.com.lib.bean.TreeNode;
+
 /**
  * 二叉搜索树迭代器
  */

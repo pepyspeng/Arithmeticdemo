@@ -8,7 +8,16 @@ package j.com.lib.offer;
  */
 public class offer_10_NumberFor1 {
 
-
+    /**
+     * 一个数减一后与它本身做与运算运算是相当于把二进制最右边的1变成0
+     *
+     * 9的二进制  1001
+     * 8的二进制  1000
+     * 做与运算     &
+     * 结果       1000
+     * @param n
+     * @return
+     */
     public static int numberFor1(int n) {
         int count = 0;
 

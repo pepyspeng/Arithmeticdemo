@@ -1,4 +1,4 @@
-package j.com.lib.stack;
+package j.com.lib.bean;
 
 public class TreeNode {
 

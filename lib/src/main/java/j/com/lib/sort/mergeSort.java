@@ -22,6 +22,16 @@ public class mergeSort {
     }
 
     private void mergeArray(int[] array, int left, int mid, int right) {
+
+
+
+
+
+
+
+
+
+
         int[] tempArray = new int[array.length];
         //左边起始位置
         int leftSt = left;

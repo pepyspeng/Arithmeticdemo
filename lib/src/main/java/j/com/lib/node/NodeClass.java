@@ -2,6 +2,8 @@ package j.com.lib.node;
 
 import java.util.Stack;
 
+import j.com.lib.bean.ListNode;
+
 public class NodeClass {
 
     private ListNode head;
