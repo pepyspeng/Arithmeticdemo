@@ -27,30 +27,30 @@ public class Sort {
 //        }
 
 
-//        final MyTask myTask = new MyTask();
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                myTask.execute("A");
-//            }
-//        }, "A").start();
-//
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                myTask.execute("B");
-//            }
-//        }, "B").start();
-//
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                myTask.execute("C");
-//            }
-//        }, "C").start();
+        final MyTask myTask = new MyTask();
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                myTask.execute("A");
+            }
+        }, "A").start();
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                myTask.execute("B");
+            }
+        }, "B").start();
+
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                myTask.execute("C");
+            }
+        }, "C").start();
     }
 
     static int min = Integer.MAX_VALUE;

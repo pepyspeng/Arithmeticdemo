@@ -15,30 +15,53 @@ public class QuickSort {
 
     private void quickSort(int[] a, int left, int right) {
         if (left < right) {
-            int mid = getMiddle(a, left, right);
-            quickSort(a, left, mid - 1);
-            quickSort(a, mid + 1, right);
+            int index = getIndex(a, left, right);
+            quickSort(a, left, index - 1);
+            quickSort(a, index + 1, right);
         }
-
-
     }
 
-    private int getMiddle(int[] a, int left, int right) {
-        int temp = a[left];
+    private int getIndex(int[] a, int left, int right) {
+        int result = a[left];
         while (left < right) {
-            while (left < right && a[right] >= temp) {
+            while (left < right && a[right] >= result) {
                 right--;
             }
             a[left] = a[right];
-            while (left < right && a[left] <= temp) {
+            while (left < right && a[left] <= result) {
                 left++;
             }
             a[right] = a[left];
         }
-        a[left] = temp;
+        a[left] = result;
         return left;
 
     }
+
+//    private void quickSort(int[] a, int left, int right) {
+//        if (left < right) {
+//            int mid = getMiddle(a, left, right);
+//            quickSort(a, left, mid - 1);
+//            quickSort(a, mid + 1, right);
+//        }
+//    }
+
+//    private int getMiddle(int[] a, int left, int right) {
+//        int temp = a[left];
+//        while (left < right) {
+//            while (left < right && a[right] >= temp) {
+//                right--;
+//            }
+//            a[left] = a[right];
+//            while (left < right && a[left] <= temp) {
+//                left++;
+//            }
+//            a[right] = a[left];
+//        }
+//        a[left] = temp;
+//        return left;
+//
+//    }
     /*
      *//**
      * 快速排序
