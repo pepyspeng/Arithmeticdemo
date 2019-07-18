@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:onClick="OnTv1Click"
-        android:text="跳转到Acitivty与Fragment"
         android:background="@drawable/bg_ripple"
-        />
+        android:enabled="true"
+        android:padding="10dp"
+        android:text="这是Fragment" />
+
 
 </LinearLayout>

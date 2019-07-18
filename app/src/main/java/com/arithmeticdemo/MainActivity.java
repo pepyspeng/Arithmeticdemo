@@ -1,31 +1,61 @@
 package com.arithmeticdemo;
 
+import android.animation.ObjectAnimator;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.arithmeticdemo.demo.ChangeActivity;
+import com.arithmeticdemo.service.DownJobService;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CameraLicesenShade shade = findViewById(R.id.shade);
-        shade.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        TextView mButton = findViewById(R.id.tv1);
+        ObjectAnimator oaY=ObjectAnimator.ofFloat(mButton, "rotationY", 0,360);
+        oaY.setStartDelay(2000);
+        oaY.setDuration(5000);
+        oaY.start();
+        // 步骤1:创建 需要设置动画的 视图View
+        Animation translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation_rotate);
+        // 步骤2:创建 动画对象 并传入设置的动画效果xml文件
+        mButton.startAnimation(translateAnimation);
+        // 步骤3:播放动画
+    }
 
-            }
-        });
-
+    public void OnTv1Click(View view) {
+        switch (view.getId()) {
+            case R.id.tv1:
+                ChangeActivity.callActivity(this);
+                break;
+        }
     }
 
 
-
+    private void JobService() {
+        JobScheduler mJobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        JobInfo.Builder builder = new JobInfo.Builder(1, new ComponentName(getPackageName(),
+                DownJobService.class.getName()))
+                .setPersisted(true)
+//                .setMinimumLatency(1000*3)//这个函数能让你设置任务的延迟执行时间(单位是毫秒),这个函数与setPeriodic(long time)方法不兼容，如果这两个方法同时调用了就会引起异常；
+                .setPeriodic(1000 * 5);//每隔三秒运行一次
+        mJobScheduler.schedule(builder.build());
+    }
 
 
     public String TAG = "MainActivity";
@@ -51,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent(ev);
     }
-
 
 
     @Override

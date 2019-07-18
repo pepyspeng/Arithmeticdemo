@@ -21,12 +21,31 @@ public class offer_16_revserNode {
         node2.next = node3;
         node3.next = node4;
         node4.next = node5;
-        ListNode temp1 = revNodeWhile(head);
+        ListNode temp1 = reverNode(head);
         while (temp1 != null) {
             System.out.print(temp1.val + "->");
             temp1 = temp1.next;
         }
     }
+
+
+
+    public static ListNode reverNode(ListNode node){
+        if(node == null || node.next == null){
+            return node;
+        }
+        ListNode preNode = null;
+        ListNode nextNode;
+        while (node !=null){
+            nextNode = node.next;
+            node.next = preNode;
+            preNode = node;
+            node = nextNode;
+        }
+        return preNode;
+    }
+
+
 
     /**
      * 首先定义一个指针，用于保存下一个节点
