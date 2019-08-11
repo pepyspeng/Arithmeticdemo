@@ -5,6 +5,8 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 
 import com.arithmeticdemo.demo.ChangeActivity;
 import com.arithmeticdemo.service.DownJobService;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         // 步骤2:创建 动画对象 并传入设置的动画效果xml文件
         mButton.startAnimation(translateAnimation);
         // 步骤3:播放动画
+
+        Handler handler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                return false;
+            }
+        });
     }
 
     public void OnTv1Click(View view) {
