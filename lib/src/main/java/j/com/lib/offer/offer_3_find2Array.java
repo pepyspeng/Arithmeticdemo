@@ -3,14 +3,14 @@ package j.com.lib.offer;
 
 /**
  * Created by pepys on 2019/6/25
- * description:¶şÎ¬Êı×éÖĞµÄ²éÕÒ
+ * description:äºŒç»´æ•°ç»„ä¸­çš„æŸ¥æ‰¾
  */
 public class offer_3_find2Array {
 
 
     public static void main(String[] args) {
         int[][] array = {{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}};
-        find2Array(array, 20);
+        find2Array(array, 11);
     }
 
 
@@ -20,17 +20,17 @@ public class offer_3_find2Array {
 
         while (row < array.length && colum >= 0) {
             if (array[row][colum] == target) {
-                System.out.println("ÕÒµ½½á¹û,Î»ÓÚµÚ" + (row + 1) + "ĞĞ,µÚ" + (colum + 1) + "ÁĞ");
+                System.out.println("æ‰¾åˆ°ç»“æœ,ä½äºç¬¬" + (row + 1) + "è¡Œ,ç¬¬" + (colum + 1) + "åˆ—");
                 return;
             } else if (array[row][colum] > target) {
-                //ËµÃ÷µ±Ç°ĞĞµÄËùÓĞÊı¾İ¶¼±ÈÄ¿±êÖµĞ¡£¬ÒòÎªÅÅ³ıµ±Ç°ĞĞ
+                //è¯´æ˜å½“å‰è¡Œçš„æ‰€æœ‰æ•°æ®éƒ½æ¯”ç›®æ ‡å€¼å°ï¼Œå› ä¸ºæ’é™¤å½“å‰è¡Œ
                 colum--;
             } else if (array[row][colum] < target) {
-                //ËµÃ÷µ±Ç°ÁĞµÄËùÓĞÊı¾İ¶¼±ÈÄ¿±êÖµ´ó£¬ÒòÎªÅÅ³ıµ±Ç°ÁĞ
+                //è¯´æ˜å½“å‰åˆ—çš„æ‰€æœ‰æ•°æ®éƒ½æ¯”ç›®æ ‡å€¼å¤§ï¼Œå› ä¸ºæ’é™¤å½“å‰åˆ—
                 row++;
             }
         }
-        System.out.println("Ã»ÕÒµ½½á¹û");
+        System.out.println("æ²¡æ‰¾åˆ°ç»“æœ");
     }
 
 
