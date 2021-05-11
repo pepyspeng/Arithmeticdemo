@@ -1,0 +1,15 @@
+package j.com.lib;
+
+public class SyncThread {
+    private int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+    public static void main(String[] args) {
+        SyncThread syncThread = new SyncThread();
+        Thread t1 = new Thread(syncThread::fb);
+        Thread t2 = new Thread(syncThread::fb);
+    }
+
+    public void fb() {
+        int[] result = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    }
+}

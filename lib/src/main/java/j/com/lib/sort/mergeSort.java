@@ -1,51 +1,79 @@
 package j.com.lib.sort;
 
+/**
+ * @author : zhupp
+ * @date : 2021/5/11
+ * description : 归并排序
+ */
 public class mergeSort {
 
     public static void main(String[] args) {
         mergeSort mergeSort = new mergeSort();
         int[] a = new int[]{90, 3, 2, 67, 44, -9, 87, 65, 11, 9, 2, 8};
-        mergeSort.mergeSort(a, 0, a.length - 1);
+        int[] tempArray = new int[a.length];
+        mergeSort.mergeSort(a, 0, a.length - 1, tempArray);
         for (int n : a) {
             System.out.print(" " + n);
         }
     }
 
-    public void mergeSort(int[] array, int left, int right) {
+
+    private void mergeSort(int[] array, int left, int right, int[] tempArray) {
         if (left < right) {
-            int mid = (left + right) / 2;
-            mergeSort(array, left, mid);
-            mergeSort(array, mid + 1, right);
-            mergeArray(array, left, mid, right);
-//            merge(array, left, mid, right);
+            int midIndex = (left + right) / 2;
+            mergeSort(array, left, midIndex, tempArray);
+            mergeSort(array, midIndex + 1, right, tempArray);
+            mergeArray(array, left, midIndex, right, tempArray);
         }
     }
 
-    private void mergeArray(int[] array, int left, int mid, int right) {
-        int[] tempArray = new int[array.length];
+
+    private void mergeArray(int[] array, int left, int mid, int right, int[] tempArray) {
         int leftIndex = left;
         int rightIndex = mid + 1;
-        int temoIndex = left;
+        int tempIndex = left;
+        while (left <= mid && rightIndex <= right) {
 
-        while (leftIndex <= mid && rightIndex <= right) {
-            if (array[leftIndex] < array[rightIndex]) {
-                tempArray[temoIndex++] = array[leftIndex++];
-            } else {
-                tempArray[temoIndex++] = array[rightIndex++];
-            }
-        }
-        while (leftIndex <= mid) {
-            tempArray[temoIndex++] = array[leftIndex++];
-        }
-        while (rightIndex <= right) {
-            tempArray[temoIndex++] = array[rightIndex++];
         }
 
-        while (left<=right){
-            array[left] = tempArray[left++];
-        }
 
     }
+
+
+//    public void mergeSort(int[] array, int left, int right,int[] tempArray) {
+//        if (left < right) {
+//            int mid = (left + right) / 2;
+//            mergeSort(array, left, mid,tempArray);
+//            mergeSort(array, mid + 1, right,tempArray);
+//            mergeArray(array, left, mid, right,tempArray);
+////            merge(array, left, mid, right);
+//        }
+//    }
+//
+//    private void mergeArray(int[] array, int left, int mid, int right,int[] tempArray) {
+//        int leftIndex = left;
+//        int rightIndex = mid + 1;
+//        int tempIndex = left;
+//
+//        while (leftIndex <= mid && rightIndex <= right) {
+//            if (array[leftIndex] < array[rightIndex]) {
+//                tempArray[tempIndex++] = array[leftIndex++];
+//            } else {
+//                tempArray[tempIndex++] = array[rightIndex++];
+//            }
+//        }
+//        while (leftIndex <= mid) {
+//            tempArray[tempIndex++] = array[leftIndex++];
+//        }
+//        while (rightIndex <= right) {
+//            tempArray[tempIndex++] = array[rightIndex++];
+//        }
+//
+//        while (left<=right){
+//            array[left] = tempArray[left++];
+//        }
+//
+//    }
 
     /**
      *
