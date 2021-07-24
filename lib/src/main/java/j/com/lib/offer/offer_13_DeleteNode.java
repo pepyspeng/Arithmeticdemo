@@ -5,7 +5,7 @@ import j.com.lib.bean.ListNode;
 /**
  * Created by pepys on 2019/6/26
  * description:
- * ÔÚ0(1)Ê±¼äÄÚÉ¾³ıÁ´±íÖĞÄ³Ò»¸ö½Úµã
+ * åœ¨0(1)æ—¶é—´å†…åˆ é™¤é“¾è¡¨ä¸­æŸä¸€ä¸ªèŠ‚ç‚¹
  *
  */
 public class offer_13_DeleteNode {
@@ -26,7 +26,7 @@ public class offer_13_DeleteNode {
         node2.next = node3;
         node3.next = node4;
         node4.next = node5;
-        System.out.println("É¾³ıÖĞ¼ä£º");
+        System.out.println("åˆ é™¤ä¸­é—´ï¼š");
         deleteNode(head, node);
         ListNode temp = head;
         while (temp.next != null) {
@@ -34,7 +34,7 @@ public class offer_13_DeleteNode {
             temp = temp.next;
         }
 
-        System.out.println("É¾³ıÎ²²¿£º");
+        System.out.println("åˆ é™¤å°¾éƒ¨ï¼š");
         deleteNode(head, node5);
         ListNode temp1 = head;
         while (temp1.next != null) {
@@ -46,7 +46,7 @@ public class offer_13_DeleteNode {
 
     public static void deleteNode(ListNode head, ListNode delNode) {
         if (delNode.next == null) {
-            //ËµÃ÷ÒªÉ¾³ıµÄ½ÚµãÊÇÎ²²¿£¬ÄÇÖ»ÄÜÑ­»·É¾³ı
+            //è¯´æ˜è¦åˆ é™¤çš„èŠ‚ç‚¹æ˜¯å°¾éƒ¨ï¼Œé‚£åªèƒ½å¾ªç¯åˆ é™¤
             while (head.next != null) {
                 if (head.next == delNode) {
                     head.next = null;

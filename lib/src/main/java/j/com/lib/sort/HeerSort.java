@@ -2,17 +2,17 @@ package j.com.lib.sort;
 
 
 
-//²»ÎÈ¶¨
+//ä¸ç¨³å®š
 public class HeerSort {
 
-    //Ï£¶ûÅÅĞò
+    //å¸Œå°”æ’åº
     public static void main(String[] args) {
         int[] a={49,38,65,97,76,13,27,49,78,34,12,64,1,33,85,29};
-        System.out.println("ÅÅĞòÖ®Ç°£º");
+        System.out.println("æ’åºä¹‹å‰ï¼š");
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i]+" ");
         }
-        //Ï£¶ûÅÅĞò
+        //å¸Œå°”æ’åº
         System.out.println();
         int d = a.length/2;
         while(true){
@@ -30,7 +30,7 @@ public class HeerSort {
             d--;
         }
         System.out.println();
-        System.out.println("ÅÅĞòÖ®ºó£º");
+        System.out.println("æ’åºä¹‹åï¼š");
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i]+" ");
         }

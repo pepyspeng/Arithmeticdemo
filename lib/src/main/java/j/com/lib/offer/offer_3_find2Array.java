@@ -15,20 +15,10 @@ public class offer_3_find2Array {
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     public static void main(String[] args) {
-//        int[][] array = {{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}};
-//        find2Array(array, 11);
-        System.out.println("没找到结果-"+tableSizeFor(1000));
+        int[][] array = {{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}};
+        find2Array(array, 11);
     }
 
-    static final int tableSizeFor(int cap) {
-        int n = cap - 1;
-        n |= n >>> 1;
-        n |= n >>> 2;
-        n |= n >>> 4;
-        n |= n >>> 8;
-        n |= n >>> 16;
-        return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
-    }
 
     private static void find2Array(int[][] array, int target) {
         int row = 0;
@@ -41,7 +31,7 @@ public class offer_3_find2Array {
                 return;
             } else if (currentData < target) {
                 row++;
-            } else if (currentData > target) {
+            } else {
                 column--;
             }
         }
@@ -69,9 +59,5 @@ public class offer_3_find2Array {
 //        System.out.println("没找到结果");
 //    }
 
-
-    public void find(int[][] array, int row, int colum, int target) {
-
-    }
 
 }

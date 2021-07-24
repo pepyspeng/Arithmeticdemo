@@ -9,7 +9,7 @@ package j.com.lib.offer;
 public class offer_9_Fibonacci {
 
     public static void main(String[] args) {
-        System.out.println(getFibonacci(5));
+        System.out.println(climbStairs(4));
     }
 
     /**
@@ -35,7 +35,7 @@ public class offer_9_Fibonacci {
      * @param n
      * @return
      */
-    public int climbStairs(int n) {
+    public static int climbStairs(int n) {
         if (n == 1) {
             return 1;
         }

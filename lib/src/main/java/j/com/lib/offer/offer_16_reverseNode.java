@@ -5,7 +5,34 @@ import j.com.lib.bean.ListNode;
 /**
  * 反转链表
  */
-public class offer_16_revserNode {
+public class offer_16_reverseNode {
+
+    private static ListNode reverseNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = next;
+            next = head;
+            head = temp;
+
+        }
+        return next;
+    }
+
+    private static ListNode reverseDepNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode temp = head.next;
+        head.next = null;
+        ListNode resultNode =reverseDepNode(temp);
+        temp.next = head;
+        return resultNode;
+    }
+
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
@@ -21,7 +48,7 @@ public class offer_16_revserNode {
         node2.next = node3;
         node3.next = node4;
         node4.next = node5;
-        ListNode temp1 = reverNode(head);
+        ListNode temp1 = reverseDepNode(head);
         while (temp1 != null) {
             System.out.print(temp1.val + "->");
             temp1 = temp1.next;
@@ -29,22 +56,21 @@ public class offer_16_revserNode {
     }
 
 
-
-    public static ListNode reverNode(ListNode node){
-        if(node == null || node.next == null){
-            return node;
-        }
-        ListNode preNode = null;
-        ListNode nextNode;
-        while (node !=null){
-            nextNode = node.next;
-            node.next = preNode;
-            preNode = node;
-            node = nextNode;
-        }
-        return preNode;
-    }
-
+//
+//    public static ListNode reverseNode(ListNode node){
+//        if(node == null || node.next == null){
+//            return node;
+//        }
+//        ListNode preNode = null;
+//        ListNode nextNode;
+//        while (node !=null){
+//            nextNode = node.next;
+//            node.next = preNode;
+//            preNode = node;
+//            node = nextNode;
+//        }
+//        return preNode;
+//    }
 
 
     /**
@@ -53,13 +79,14 @@ public class offer_16_revserNode {
      * 然后让当前节点的下一个节点指向前一个节点
      * 然后让下一节点等于现在的节点--用于下次循环使用
      * 最后让现在节点等于最开始的下一节点
+     *
      * @param node
      * @return
      */
-    public static ListNode revNodeWhile(ListNode node){
+    public static ListNode revNodeWhile(ListNode node) {
         //存储前一个节点
         ListNode nextNode = null;
-        while (node !=null){
+        while (node != null) {
             ListNode temp = node.next;
             node.next = nextNode;
             nextNode = node;
@@ -72,20 +99,21 @@ public class offer_16_revserNode {
 
     /**
      * 递归
+     *
      * @param headNode
      * @return
      */
-    public static ListNode revNode(ListNode headNode){
-        if(headNode == null ){
+    public static ListNode revNode(ListNode headNode) {
+        if (headNode == null) {
             return null;
         }
-        if( headNode.next ==null){
+        if (headNode.next == null) {
             return headNode;
         }
         ListNode nextNode = headNode.next;
         headNode.next = null;
         ListNode head = revNode(nextNode);
         nextNode.next = headNode;
-        return  head;
+        return head;
     }
 }

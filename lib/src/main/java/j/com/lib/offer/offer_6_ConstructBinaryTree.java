@@ -41,11 +41,11 @@ public class offer_6_ConstructBinaryTree {
     public static void main(String[] args) {
         offer_6_ConstructBinaryTree binaryTree = new offer_6_ConstructBinaryTree();
         binaryTree.createBinaryTree();
-        binaryTree.preOrder(root);
+//        binaryTree.preOrder(root);
         String[] pre = {"A", "B", "D", "G", "H", "C", "E", "I", "F"};
 
         String[] mid = {"G", "D", "H", "B", "A", "E", "I", "C", "F"};
-        root = binaryTree.resetBinaryTree(pre, 0, pre.length - 1, mid, 0, mid.length - 1);
+        root = binaryTree.resetBinaryTree1(pre, 0, pre.length - 1, mid, 0, mid.length - 1);
         binaryTree.preOrder(root);
     }
 
@@ -68,21 +68,44 @@ public class offer_6_ConstructBinaryTree {
         }
     }
 
+    public BinaryTreeNode resetBinaryTree1(String[] pre, int preStart, int preEnd, String[] mid, int midStart, int midEnd) {
+        if (preStart > preEnd || midStart > midEnd) {
+            return null;
+        }
+        BinaryTreeNode treeNode = new BinaryTreeNode(pre[preStart]);
+        for (int i = midStart; i <= midEnd; i++) {
+            if (pre[preStart].equals(mid[i])) {
+                treeNode.leftChild = resetBinaryTree1(pre,
+                        preStart + 1,
+                        preStart + (i - midStart),// (i - startIn)是中序遍历中左子树的长度，所以左子树的总长度：前序的 startPre + 中序遍历中左子树的长度
+                        mid,
+                        midStart,
+                        i - 1);
+                treeNode.rightChild = resetBinaryTree1(pre,
+                        preStart + (i - midStart) + 1,
+                        preEnd,
+                        mid,
+                        i + 1,
+                        midEnd);
+                break;
+            }
+        }
+        return treeNode;
+    }
 
     public BinaryTreeNode resetBinaryTree(String[] pre, int preStart, int preEnd, String[] mid, int midStart, int midEnd) {
         if (preStart > preEnd || midStart > midEnd) {
             return null;
         }
         BinaryTreeNode treeNode = new BinaryTreeNode(pre[preStart]);
-        for (int i = midStart; i < midEnd; i++) {
+        for (int i = midStart; i <= midEnd; i++) {
             if (pre[preStart].equals(mid[i])) {
                 treeNode.leftChild = resetBinaryTree(pre,
                         preStart + 1,
                         preStart + (i - midStart),
                         mid,
                         midStart,
-//                        ,i-1
-                        midStart + i);
+                        i-1);
                 treeNode.rightChild = resetBinaryTree(pre,
                         preStart + (i - midStart) + 1,
                         preEnd,
