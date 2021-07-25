@@ -31,58 +31,32 @@ public class offer_5_NodePrint {
     }
 
     /**
-     * 利用递归
-     * @param head
+     * 利用栈先进后出
+     *
+     * @param node
      */
-    private void nodeIteration(ListNode head) {
-        if(head == null){
-            return;
+    public void nodePrint(ListNode node) {
+        Stack<ListNode> stack = new Stack<>();
+        for (ListNode node1 = node; node1 != null; node1 = node1.next) {
+            stack.push(node1);
         }
-        nodeIteration(head.next);
-        System.out.println("node:"+head.val);
+        while (!stack.empty()) {
+            System.out.print(stack.pop().val);
+        }
+
     }
 
     /**
-     * 利用栈的特性
-     * @param head
+     * 利用迭代
+     *
+     * @param node
      */
-    private void nodePrint(ListNode head) {
-        if(head == null){
+    public static void nodeIteration(ListNode node) {
+        if (node == null) {
             return;
         }
-        Stack<ListNode> stack = new Stack<>();
-        stack.push(head);
-        nodePrint(head.next);
-        System.out.println("node:"+stack.pop().val);
+        nodeIteration(node.next);
+        System.out.print(node.val);
     }
-//
-//    /**
-//     * 利用栈先进后出
-//     *
-//     * @param node
-//     */
-//    public void nodePrint(ListNode node) {
-//        Stack<ListNode> stack = new Stack<>();
-//        for (ListNode node1 = node; node1 != null; node1 = node1.next) {
-//            stack.push(node1);
-//        }
-//        while (!stack.empty()) {
-//            System.out.print(stack.pop().val);
-//        }
-//
-//    }
-//
-//    /**
-//     * 利用迭代
-//     *
-//     * @param node
-//     */
-//    public static void nodeIteration(ListNode node) {
-//        if (node == null) {
-//            return;
-//        }
-//        nodeIteration(node.next);
-//        System.out.print(node.val);
-//    }
 
 }
