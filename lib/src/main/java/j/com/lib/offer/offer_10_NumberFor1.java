@@ -8,6 +8,12 @@ package j.com.lib.offer;
  */
 public class offer_10_NumberFor1 {
 
+    public static void main(String[] args){
+        System.out.println(
+                "count:"+numberFor1(1087865780)
+        );
+    }
+
     /**
      * 一个数减一后与它本身做与运算运算是相当于把二进制最右边的1变成0
      *
@@ -20,10 +26,13 @@ public class offer_10_NumberFor1 {
      */
     public static int numberFor1(int n) {
         int count = 0;
-
+        System.out.println(n+"转二进制："+Integer.toBinaryString(n));
         while (n != 0) {
             count++;
             n = (n - 1) & n;
+            System.out.println(
+                    "n:"+n
+            );
         }
 
         return count;
