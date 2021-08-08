@@ -9,7 +9,18 @@ package j.com.lib.offer;
 public class offer_9_Fibonacci {
 
     public static void main(String[] args) {
-        System.out.println(climbStairs(4));
+        System.out.println(jumpFloor(4));
+    }
+
+    public static int jumpFloor(int target) {
+
+        int[] result = new int[target+1];
+        result[0]=1;
+        result[1]=1;
+        for(int i =2;i<=target;i++){
+            result[i] = result[i-1]+result[i-2];
+        }
+        return result[target];
     }
 
     /**
@@ -18,16 +29,16 @@ public class offer_9_Fibonacci {
      * @return
      */
     public static int getFibonacci(int n) {
-        if (n == 1) {
-            return 1;
+        if(n ==0 ||n ==1){
+            return n;
         }
-        int[] result = new int[n + 1];
-        result[1] = 1;
-        result[2] = 2;
-        for (int i = 3; i <= n; i++) {
-            result[i] = result[i - 1] + result[i - 2];
+        int[] dp = new int[n+1];
+        dp[0]=0;
+        dp[1]=1;
+        for(int i = 2;i<=n;i++){
+            dp[i]=dp[i-1]+dp[i-2];
         }
-        return result[n];
+        return dp[n];
     }
 
     /**
