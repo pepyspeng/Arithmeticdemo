@@ -11,7 +11,7 @@ public class offer_32_levelOrder {
 
     }
 
-    public ArrayList<Integer> ooffer(TreeNode root) {
+    public ArrayList<Integer> offer(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<Integer>();
         if(root == null){
             return  result;
