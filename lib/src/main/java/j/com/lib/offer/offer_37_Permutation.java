@@ -2,6 +2,7 @@ package j.com.lib.offer;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *  输出字符串的所有排列
@@ -37,6 +38,7 @@ public class offer_37_Permutation {
                 str.setCharAt(i,temp);
             }
         }
+        Collections.sort(result);
         return result;
     }
 }

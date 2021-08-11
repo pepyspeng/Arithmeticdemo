@@ -1,34 +1,37 @@
 package j.com.lib.offer;
 
+
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class offer_37_StringArrange {
 
     public static void main(String[] args) {
         offer_37_StringArrange stringArrange = new offer_37_StringArrange();
-        String test = "abc";
-        ArrayList<String> result =   stringArrange.rec(test.toCharArray(),0,test.length()-1);
-        System.out.println(result.toString());
-//        for (String c : result) {
-//            System.out.println(c);
-//        }
+        String test = "ab";
+        Set<String> result =   stringArrange.rec(test.toCharArray(),0,test.length()-1);
+        System.out.println(result);
+        ArrayList<String> result1 = new ArrayList<>();
+        Iterator<String> iterator = result.iterator();
+       while (iterator.hasNext()){
+           result1.add(iterator.next());
+       }
+        System.out.println(result);
     }
-
-    public ArrayList<String> rec(char[] array, int start, int end) {
-        ArrayList<String> result = new ArrayList<>();
-//        if (end <= 1) {
-//            return result;
-//        }
+    Set<String> result = new TreeSet<>();
+    public Set<String> rec(char[] array, int start, int end) {
         if (start == end) {
+            StringBuilder sb = new StringBuilder();
             for (char c : array) {
-                System.out.print(c);
-                result.add(c+"");
+                sb.append(c);
             }
-            System.out.println();
+            result.add(sb.toString());
         }else{
             for (int i = start;i<=end;i++){
                 swap(array,i,start);
-                rec(array,start+1,end);
+                result=  rec(array,start+1,end);
                 swap(array,i,start);
             }
         }
