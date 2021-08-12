@@ -3,7 +3,7 @@ package j.com.lib.sort;
 public class MergeSort {
     public static void main(String[] args) {
         MergeSort mergeSort = new MergeSort();
-        int[] a = new int[]{90, 3, 2, 67, 44, -9, 87, 65, 11, 9, 2, 8};
+        int[] a = new int[]{1,2,3,2,2,2,5,4,2};
         int[] tempArray = new int[a.length];
         mergeSort.mergeSort(a, 0, a.length - 1, tempArray);
         for (int n : a) {
@@ -12,13 +12,14 @@ public class MergeSort {
     }
 
 
-    private void mergeSort(int[] array, int left, int right, int[] tempArray) {
+    public int[] mergeSort(int[] array, int left, int right, int[] tempArray) {
         if (left < right) {
             int midIndex = (left + right) / 2;
             mergeSort(array, left, midIndex, tempArray);
             mergeSort(array, midIndex + 1, right, tempArray);
             mergeArray(array, left, midIndex, right, tempArray);
         }
+        return array;
     }
 
 

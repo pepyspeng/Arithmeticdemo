@@ -4,7 +4,7 @@ package j.com.lib.sort;
 
 public class BinaryInsertSort {
     public static void main(String[] args) {
-        int[] a={49,38,65,97,176,213,227,49,78,34,12,164,11,18,1};
+        int[] a={1,2,3,2,2,2,5,4,2};
         System.out.println("排序之前：");
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i]+" ");
@@ -18,7 +18,7 @@ public class BinaryInsertSort {
         }
     }
     //二分法插入
-    private static void sort(int[] a) {
+    public static void sort(int[] a) {
         for (int i = 0; i < a.length; i++) {
             int temp = a[i];
             int left = 0;

@@ -13,12 +13,13 @@ public class QuickSort {
         }
     }
 
-    private void quickSort(int[] a, int left, int right) {
+    public int[] quickSort(int[] a, int left, int right) {
         if (left < right) {
             int mid = getMidIndex(a, left, right);
             quickSort(a, left, mid);
             quickSort(a, mid + 1, right);
         }
+        return a;
     }
 
     private int getMidIndex(int[] a, int left, int right) {
