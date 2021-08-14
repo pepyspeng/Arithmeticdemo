@@ -3,7 +3,7 @@ package j.com.lib.sort;
 public class InsertSort {
 
     public static void main(String[] args) {
-        int[] a = {49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 1};
+        int[] a = {1,2,3,2,2,2,5,4,2};
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
         }

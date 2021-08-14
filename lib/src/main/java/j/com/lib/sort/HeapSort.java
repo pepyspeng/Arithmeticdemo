@@ -4,7 +4,7 @@ package j.com.lib.sort;
 public class HeapSort {   //(1)
 	public static void main(String[] args) {
 		HeapSort heapSort = new HeapSort();
-		int[] array = { 19, 8, 27, 6, 35, 14, 3, 12, 1, 0, 9, 10, 7 };
+		int[] array = { 19, 8, 27, 6, 35, 14, 3, 12, 1, 0, 9, 10, 7 ,7,8,6,3};
 
 		System.out.println("Before heap:");
 		heapSort.printArray(array);

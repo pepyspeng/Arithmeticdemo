@@ -17,18 +17,18 @@ public class MergeSort {
             int midIndex = (left + right) / 2;
             mergeSort(array, left, midIndex, tempArray);
             mergeSort(array, midIndex + 1, right, tempArray);
-            mergeArray(array, left, midIndex, right, tempArray);
+            mergeArray(array, left, midIndex, right,tempArray);
         }
         return array;
     }
 
 
     private void mergeArray(int[] array, int left, int mid, int right, int[] tempArray) {
-        int tempIndex = left;
+        int tempIndex = 0;
         int leftIndex = left;
         int rightIndex = mid+1;
         while (leftIndex <= mid && rightIndex <= right) {
-            if (leftIndex < mid && array[leftIndex] < array[rightIndex]) {
+            if (leftIndex <= mid && array[leftIndex] < array[rightIndex]) {
                 tempArray[tempIndex++] = array[leftIndex++];
             } else {
                 tempArray[tempIndex++] = array[rightIndex++];
@@ -40,8 +40,9 @@ public class MergeSort {
         while (rightIndex <= right) {
             tempArray[tempIndex++] = array[rightIndex++];
         }
+        tempIndex = 0;
         while (left <= right) {
-            array[left] = tempArray[left++];
+            array[left++] = tempArray[tempIndex++];
         }
 
     }
@@ -53,7 +54,7 @@ public class MergeSort {
      * @param mid 假如两个数组，那么就是第二个数组的起始位置
      * @param right
      */
-    /*private void mergeArray(int[] array, int left, int mid, int right) {
+    private void mergeArray(int[] array, int left, int mid, int right) {
 
         int[] tempArray = new int[array.length];
         //左边起始位置
@@ -80,6 +81,6 @@ public class MergeSort {
             array[left] = tempArray[left++];
         }
 
-    }*/
+    }
 
 }
