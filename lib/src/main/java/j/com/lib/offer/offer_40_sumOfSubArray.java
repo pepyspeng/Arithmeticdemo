@@ -9,7 +9,10 @@ package j.com.lib.offer;
 public class offer_40_sumOfSubArray {
     public static void main(String[] args) {
         int[] array = new int[]{1, -2, 3, 10, -4, 7, 2, -5};
-        System.out.println(FindGreatestSumOfSubArray(array));
+//        System.out.println(FindGreatestSumOfSubArray(array));
+
+        System.out.println(1234/10);
+        System.out.println(1234%10);
         System.out.println(112/10);
         System.out.println(112%10);
         System.out.println(13772/10%10);
