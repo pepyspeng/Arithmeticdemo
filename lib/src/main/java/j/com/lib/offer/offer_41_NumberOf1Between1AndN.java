@@ -3,7 +3,7 @@ package j.com.lib.offer;
 public class offer_41_NumberOf1Between1AndN {
 
     public static void main(String[] args) {
-        System.out.println(NumberOf1Between1AndN_Solution(13));
+        System.out.println(NumberOf1Between1AndN_Solution(1013));
     }
 
     public static int NumberOf1Between1AndN_Solution(int n) {
@@ -13,7 +13,7 @@ public class offer_41_NumberOf1Between1AndN {
         int cur = n % 10;
         int low = 0;
         while (cur != 0 || high != 0) {
-            if (cur < 0) {
+            if (cur == 0) {
                 // case 1 : cur == 0
                 // cur = 0 时，高位需要借位用于低位计算
                 // count = (high-1)*bitNum +(99+1)
