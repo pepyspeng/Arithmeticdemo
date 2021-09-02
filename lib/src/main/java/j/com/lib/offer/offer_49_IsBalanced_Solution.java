@@ -7,7 +7,7 @@ import j.com.lib.bean.TreeNode;
  * @date : 2021/9/2
  * description : 判断一棵树是否是平衡二叉树
  */
-public class offer_48_IsBalanced_Solution {
+public class offer_49_IsBalanced_Solution {
 
     public static void main(String[] args) {
 
