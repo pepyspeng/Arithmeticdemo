@@ -26,8 +26,8 @@ public class ShadeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shade);
         Glide.with(this).load("").into(new ImageView(this));
-        SparseArray sa = new SparseArray<>();
-        sa.put("","12");
+//        SparseArray sa = new SparseArray<>();
+//        sa.put("","12");
     }
 
 
