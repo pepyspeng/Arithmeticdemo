@@ -1,6 +1,12 @@
 package j.com.lib.offer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+import j.com.lib.bean.TreeNode;
 
 /**
  * 数组中重复的数字
@@ -84,5 +90,26 @@ public class offer2_3_findRepeatNumber {
         return 0;
     }
 
-
+    public int[] levelOrder(TreeNode root) {
+        ArrayList<Integer> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node != null) {
+                result.add(node.val);
+            }
+            if (root.left != null) {
+                queue.offer(root.left);
+            }
+            if (root.right != null) {
+                queue.offer(root.right);
+            }
+        }
+        int[] reuslt1 = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            reuslt1[i] = result.get(i);
+        }
+        return reuslt1;
+    }
 }
