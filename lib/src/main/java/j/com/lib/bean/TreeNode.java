@@ -10,7 +10,14 @@ public class TreeNode {
         val = x;
     }
 
-
+    /**
+     *              4
+     *          2       6
+     *       1    3   5   7
+     *
+     *
+     * @return
+     */
     public static TreeNode getTreeNode() {
         TreeNode root1 = new TreeNode(1);
         TreeNode root2 = new TreeNode(2);

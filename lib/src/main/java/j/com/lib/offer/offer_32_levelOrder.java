@@ -1,6 +1,7 @@
 package j.com.lib.offer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,18 +11,17 @@ import j.com.lib.bean.TreeNode;
 
 public class offer_32_levelOrder {
     public static void main(String[] args) {
-        System.out.println(levelOrder_1(TreeNode.getTreeNode()));
+        System.out.println(levelOrder_2(TreeNode.getTreeNode()));
     }
 
 
-    public List<List<Integer>> levelOrder_2(TreeNode root) {
+    public static List<List<Integer>> levelOrder_2(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
             return result;
         }
         Deque<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        boolean isRevere = false;
         while (!queue.isEmpty()) {
             List<Integer> list = new ArrayList<>();
             for (int i = queue.size(); i > 0; i--) {
@@ -29,26 +29,21 @@ public class offer_32_levelOrder {
                 if (node != null) {
                     list.add(node.val);
                 }
-                if (isRevere) {
-                    if (node.right != null) {
-                        queue.offer(node.right);
-                    }
-                    if (node.left != null) {
-                        queue.offer(node.left);
-                    }
-                } else {
-                    if (node.left != null) {
-                        queue.offer(node.left);
-                    }
-                    if (node.right != null) {
-                        queue.offer(node.right);
-                    }
+
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                isRevere =!isRevere;
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            if (result.size() % 2 == 1) {
+                Collections.reverse(list);
             }
             result.add(list);
         }
         return result;
+
     }
 
     /**

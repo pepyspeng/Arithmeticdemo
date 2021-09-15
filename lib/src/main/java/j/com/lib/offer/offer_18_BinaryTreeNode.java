@@ -46,6 +46,38 @@ public class offer_18_BinaryTreeNode {
         return treeNodeB;
     }
 
+    /**
+     * 树的子结构
+     * @param A
+     * @param B
+     * @return
+     */
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        boolean isSub = false;
+        if (A != null && B != null) {
+            if (A.val == B.val) {
+                isSub = aHaveB(A, B);
+            }
+            if (!isSub) {
+                isSub = isSubStructure(A.left, B);
+            }
+            if (!isSub) {
+                isSub = isSubStructure(A.right, B);
+            }
+        }
+        return isSub;
+
+    }
+
+    public boolean aHaveB(TreeNode A, TreeNode B) {
+        if (B == null) {
+            return true;
+        }
+        if (A == null || A.val != B.val) {
+            return false;
+        }
+        return aHaveB(A.left, B.left) && aHaveB(A.right, B.right);
+    }
 
     public static void main(String[] args) {
         offer_18_BinaryTreeNode binaryTreeNode = new offer_18_BinaryTreeNode();

@@ -1,5 +1,7 @@
 package j.com.lib.offer;
 
+import j.com.lib.bean.TreeNode;
+
 /**
  * @author : zhupp
  * @date : 2021/9/7
@@ -8,11 +10,13 @@ package j.com.lib.offer;
  */
 public class offer_55_search {
 
+
+
     public int search(int[] array, int target) {
         int left = binarySearch(array, target, true);
         int right = binarySearch(array, target, false) - 1;
         if (left <= right && array[left] == target && array[right] == target) {
-            return  right-left +1;
+            return right - left + 1;
         }
         return 0;
     }
