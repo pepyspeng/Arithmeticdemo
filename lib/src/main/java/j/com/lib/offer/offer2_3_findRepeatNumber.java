@@ -15,8 +15,8 @@ import j.com.lib.bean.TreeNode;
 public class offer2_3_findRepeatNumber {
 
     public static void main(String[] args) {
-        int[] array = new int[]{1, 8, 1, 9, 2, 6, 5, 1, 4, 5};
-        System.out.println(findRepeatNumber1(array));
+        int[] array = new int[]{1,2,4,4,4,4,4,7};
+        System.out.println(search(array,4));
     }
 
     public static int search(int[] array, int target) {
@@ -37,12 +37,12 @@ public class offer2_3_findRepeatNumber {
             int mid = left + (right - left) / 2;
             if (array[mid] > target || (isLow && array[mid] >= target)) {
                 right = mid - 1;
-                result = mid;
+//                result = mid;
             } else {
                 left = mid + 1;
             }
         }
-        return result;
+        return left;
     }
 
 
