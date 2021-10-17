@@ -15,10 +15,30 @@ public class offer_3_find2Array {
     static final int MAXIMUM_CAPACITY = 1 << 30;
 
     public static void main(String[] args) {
-        int[][] array = {{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}};
+        int[][] array = {{11}};
         find2Array(array, 11);
     }
 
+    public static boolean findNumberIn2DArray(int[][] matrix, int target) {
+        if(matrix.length ==0 || matrix[0].length==0){
+            return false;
+        }
+        //行
+        int row = 0;
+        //列
+        int column = matrix[0].length-1;
+        System.out.println(row+"--"+column);
+        while(row<matrix.length && column>=0){
+            if(matrix[row][column] == target){
+                return true;
+            }else if(matrix[row][column] > target){
+                column--;
+            }else{
+                row++;
+            }
+        }
+        return false;
+    }
 
     private static void find2Array(int[][] array, int target) {
         int row = 0;

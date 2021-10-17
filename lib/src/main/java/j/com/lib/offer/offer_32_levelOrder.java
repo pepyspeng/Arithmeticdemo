@@ -20,21 +20,21 @@ public class offer_32_levelOrder {
         if (root == null) {
             return result;
         }
-        Deque<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
             List<Integer> list = new ArrayList<>();
-            for (int i = queue.size(); i > 0; i--) {
+            for(int i = queue.size();i>0;i--){
                 TreeNode node = queue.poll();
                 if (node != null) {
                     list.add(node.val);
                 }
 
                 if (node.left != null) {
-                    queue.offer(node.left);
+                    queue.add(node.left);
                 }
                 if (node.right != null) {
-                    queue.offer(node.right);
+                    queue.add(node.right);
                 }
             }
             if (result.size() % 2 == 1) {
@@ -72,6 +72,7 @@ public class offer_32_levelOrder {
         queue.offer(root);
         while (!queue.isEmpty()) {
             List<Integer> list = new ArrayList<>();
+            //必须是倒序，或者把queue初始size记录下来，不然for中会改变queue的值
             for (int i = queue.size(); i > 0; i--) {
                 TreeNode node = queue.poll();
                 if (node != null) {
@@ -88,7 +89,30 @@ public class offer_32_levelOrder {
         }
         return result;
     }
+    public int[] levelOrder1(TreeNode root) {
+        ArrayList<Integer> result = new ArrayList<>();
+        if(root == null){
+            return  new int[]{};
+        }
+        Queue<TreeNode> queue = new LinkedList  <>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode temp = queue.poll();
+            result.add(temp.val);
+            if(temp.left!=null){
+                queue.offer(temp.left);
 
+            }
+            if(temp.right!=null){
+                queue.offer(temp.right);
+            }
+        }
+        int[] array = new int[result.size()];
+        for(int i=0;i<result.size();i++){
+            array[i] = result.get(i);
+        }
+        return array;
+    }
 
     public static int[] levelOrder(TreeNode root) {
         ArrayList<Integer> result = new ArrayList<>();
