@@ -26,6 +26,7 @@ public class offer_56_giftMaxValue {
                 if (i == 0 && j == 0) {
                     //左上角的起始点
                     grid[i][j] = grid[i][j];
+                    continue;
                 }else if(i == 0){
                     //只算第一行
                     grid[i][j] +=grid[i][j-1];
