@@ -19,7 +19,7 @@ public class lt_top_2_addTwoNumbers {
     public static void main(String[] args) {
         int[] a = {1,4,3,2};
         int[] b = {13,5,1,4};
-        System.out.println(addTwoNumbers(a,b));
+//        System.out.println(addTwoNumbers(a,b));
     }
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {

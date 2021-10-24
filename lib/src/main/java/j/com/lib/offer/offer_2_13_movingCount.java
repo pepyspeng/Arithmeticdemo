@@ -11,6 +11,43 @@ package j.com.lib.offer;
  * 因为3+5+3+8=19。请问该机器人能够到达多少个格子？
  */
 public class offer_2_13_movingCount {
+
+    public int movingCount1(int m, int n, int k) {
+        boolean[][] visited = new boolean[m][n];
+        return dfs1(0, 0, m, n, k, visited);
+    }
+
+    private int dfs1(int row, int column, int m, int n, int k, boolean[][] visited) {
+        // 数组越界
+        if (row < 0 || row >= m || column < 0 || column >= n
+                //已经访问过的
+                || visited[row][column]
+                //限制不能进入的地方
+                || sum1(row, column) > k) {
+            return 0;
+        }
+        visited[row][column] = true;
+        //沿着右边走
+        int count1 = dfs1(row, column + 1, m, n, k, visited);
+        //沿着下边走
+        int count2 = dfs1(row + 1, column, m, n, k, visited);
+        return count1 + count2 + 1;
+    }
+
+    private int sum1(int row, int column) {
+        int sum = 0;
+        while (row != 0) {
+            sum += row % 10;
+            row = row / 10;
+        }
+        while (column != 0) {
+            sum += column % 10;
+            column = column / 10;
+        }
+        return sum;
+    }
+
+
     int m, n, k;
     boolean[][] visited;
 
