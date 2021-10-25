@@ -24,6 +24,10 @@ public class offer_36_Convert {
         return  head;
     }
 
+    /**
+     * 中序遍历
+     * @param cur
+     */
     private void dfs(Node cur) {
         if(cur == null){
             return;
