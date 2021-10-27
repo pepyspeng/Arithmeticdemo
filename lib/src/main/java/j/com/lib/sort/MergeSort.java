@@ -3,11 +3,24 @@ package j.com.lib.sort;
 public class MergeSort {
     public static void main(String[] args) {
         MergeSort mergeSort = new MergeSort();
-        int[] a = new int[]{1,2,3,2,2,2,5,4,2};
+        int[] a = new int[]{1, 2, 3, 2, 2, 2, 5, 4, 2};
         int[] tempArray = new int[a.length];
         mergeSort.mergeSort(a, 0, a.length - 1, tempArray);
         for (int n : a) {
             System.out.print(" " + n);
+        }
+    }
+
+    public void mergeArray1(int[] array, int left, int right, int mid, int[] tempArray) {
+        int tempIndex = left;
+        int leftIndex = left;
+        int rightIndex = mid + 1;
+        while (leftIndex <= mid && rightIndex <= right) {
+            if (array[leftIndex] > array[rightIndex]) {
+                tempArray[tempIndex++] = array[rightIndex++];
+            }else{
+                tempArray[tempIndex++] = array[leftIndex++];
+            }
         }
     }
 
@@ -17,7 +30,7 @@ public class MergeSort {
             int midIndex = (left + right) / 2;
             mergeSort(array, left, midIndex, tempArray);
             mergeSort(array, midIndex + 1, right, tempArray);
-            mergeArray(array, left, midIndex, right,tempArray);
+            mergeArray(array, left, midIndex, right, tempArray);
         }
         return array;
     }
@@ -26,7 +39,7 @@ public class MergeSort {
     private void mergeArray(int[] array, int left, int mid, int right, int[] tempArray) {
         int tempIndex = 0;
         int leftIndex = left;
-        int rightIndex = mid+1;
+        int rightIndex = mid + 1;
         while (leftIndex <= mid && rightIndex <= right) {
             if (leftIndex <= mid && array[leftIndex] < array[rightIndex]) {
                 tempArray[tempIndex++] = array[leftIndex++];
@@ -48,10 +61,9 @@ public class MergeSort {
     }
 
     /**
-     *
      * @param array 数组
-     * @param left 假如两个数组，那么就是第一个数组的起始位置
-     * @param mid 假如两个数组，那么就是第二个数组的起始位置
+     * @param left  假如两个数组，那么就是第一个数组的起始位置
+     * @param mid   假如两个数组，那么就是第二个数组的起始位置
      * @param right
      */
     private void mergeArray(int[] array, int left, int mid, int right) {

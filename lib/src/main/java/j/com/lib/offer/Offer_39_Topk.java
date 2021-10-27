@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Offer_39_Topk {
     public static void main(String[] args) {
-        int[] array = new int[]{1, 6, 3, 7, 2, 8, 5, 4, 9};
+        int[] array = new int[]{0,0,0,2,0,5};
         Offer_39_Topk topK = new Offer_39_Topk();
-        System.out.println(Arrays.toString(topK.getLeastNumbers(array, 3)));
+        System.out.println(Arrays.toString(topK.getLeastNumbers(array, 0)));
 //        System.out.println(Arrays.toString(topK.getTopK(array, 9)));
 
     }
