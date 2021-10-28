@@ -1,52 +1,61 @@
 package j.com.lib.offer;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Offer_39_Topk {
+    static int result = -1;
     public static void main(String[] args) {
-        int[] array = new int[]{0,0,0,2,0,5};
+        int[] array = new int[]{0, 0, 0, 2, 0, 5};
         Offer_39_Topk topK = new Offer_39_Topk();
         System.out.println(Arrays.toString(topK.getLeastNumbers(array, 0)));
 //        System.out.println(Arrays.toString(topK.getTopK(array, 9)));
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        map.forEach((key, value) -> {
+            if (value == 1) {
+                result = key;
+            }
+        });
 
     }
 
 
     private int[] getLeastNumbers(int[] array, int k) {
-        if(k ==0 || array.length ==0){
+        if (k == 0 || array.length == 0) {
             return new int[0];
         }
-        return quickSearch(array, 0, array.length-1, k-1);
+        return quickSearch(array, 0, array.length - 1, k - 1);
     }
 
     private int[] quickSearch(int[] array, int left, int right, int k) {
-        int index = getIndex(array,left,right);
-        if(index == k){
+        int index = getIndex(array, left, right);
+        if (index == k) {
             //得到的正好是需要的index
-            return  Arrays.copyOf(array,k+1);
-        }else if(index<k){
+            return Arrays.copyOf(array, k + 1);
+        } else if (index < k) {
             //说明 需要的值在右边区域
-            return quickSearch(array,index+1,right,k);
-        }else {
+            return quickSearch(array, index + 1, right, k);
+        } else {
             //说明 需要的值在左边区域
-            return  quickSearch(array,left,index-1,k);
+            return quickSearch(array, left, index - 1, k);
         }
 
     }
 
     private int getIndex(int[] array, int left, int right) {
         int temp = array[left];
-        while (left<right){
-            while (left<right && array[right] >= temp){
+        while (left < right) {
+            while (left < right && array[right] >= temp) {
                 right--;
             }
             array[left] = array[right];
-            while (left<right && array[left] <= temp){
+            while (left < right && array[left] <= temp) {
                 left++;
             }
             array[right] = array[left];
         }
-        array[left] =temp;
+        array[left] = temp;
         return left;
 
     }
@@ -86,8 +95,6 @@ public class Offer_39_Topk {
 //        a[left] = temp;
 //        return left;
 //    }
-
-
 
 
 }
