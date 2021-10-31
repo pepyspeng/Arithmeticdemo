@@ -12,9 +12,9 @@ public class offer_6_ConstructBinaryTree {
 
     /**
      * 构建二叉树
-     *          A
-     *      B       C
-     *   D       E      F
+     * A
+     * B       C
+     * D       E      F
      * G  H    I
      */
     public void createBinaryTree() {
@@ -127,6 +127,51 @@ public class offer_6_ConstructBinaryTree {
         return treeNode;
     }
 
+    public TreeNode reBuild(int[] pre, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+
+        /**
+         * 前序：根左右
+         * 中序：左根右
+         * 那么就能根据前序和中序得到二叉的根节点和左右子节点。
+         * 然后左右子节点不断递归，得到整个二叉树
+         * 第一次循环
+         * String[] pre = {"A", "B", "D", "G", "H", "C", "E", "I", "F"};
+         *
+         * String[] mid = {"G", "D", "H", "B", "A", "E", "I", "C", "F"};
+         * A 是根节点，那么i = 4 是找到根节点。也就是 以A为根节点的树，
+         * 左子树的长度是 4，也就是
+         * 前序遍历中 左子树 BDGH 位置  , preStart =preStart +1,preEnd = preStart +(i-inStart),
+         * 中序遍历中 左子树 BDGH 位置    inStart =inStart, inEnd = i-1
+         *
+         * 前序遍历中 右子树的 CEIF位置，preStart =(上面的preEnd+1) = preStart +(i-inStart)+1,preEnd = preEnd,
+         * 中序遍历中 右子树的 CEIF位置，inStart =i+1 ,indEnd = inEnd
+         */
+        if (preStart > preEnd || inStart > inEnd) {
+            return null;
+        }
+        TreeNode root = new TreeNode(pre[preStart]);
+        for (int i = inStart; i < inEnd; i++) {
+            if (root.val == i) {
+                //找到了中序数组中的根节点。
+                root.left = reBuild(pre,
+                        preStart + 1,
+                        preStart + (i - inStart),
+                        inorder,
+                        inStart,
+                        i - 1);
+                root.right = reBuild(pre,
+                        preStart + (i - inStart)+1,
+                        preEnd,
+                        inorder,
+                        i+1,
+                        inEnd);
+                break;
+            }
+        }
+
+        return root;
+    }
+
     public BinaryTreeNode resetBinaryTree(String[] pre, int preStart, int preEnd, String[] mid, int midStart, int midEnd) {
         if (preStart > preEnd || midStart > midEnd) {
             return null;
@@ -139,7 +184,7 @@ public class offer_6_ConstructBinaryTree {
                         preStart + (i - midStart),
                         mid,
                         midStart,
-                        i-1);
+                        i - 1);
                 treeNode.rightChild = resetBinaryTree(pre,
                         preStart + (i - midStart) + 1,
                         preEnd,
@@ -151,4 +196,5 @@ public class offer_6_ConstructBinaryTree {
         }
         return treeNode;
     }
+
 }

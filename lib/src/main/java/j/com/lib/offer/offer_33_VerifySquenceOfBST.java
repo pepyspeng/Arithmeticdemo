@@ -2,45 +2,99 @@ package j.com.lib.offer;
 
 
 /**
- * @author     : zhupp
- * @date       : 2021/9/2
+ * @author : zhupp
+ * @date : 2021/9/2
  * description :二叉搜索树的后续遍历
+ * 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。
  */
 public class offer_33_VerifySquenceOfBST {
     public static void main(String[] args) {
     }
 
     /**
+     * 8
+     * /    \
+     * 4       12
+     * /  \     /   \
+     * 3    5   11   13
+     * <p>
+     * 二叉搜索树的
+     * 中序遍历是 顺序的，也就是
+     * 2、3、4 、8、11、12、13
+     * 后续遍历： 3，5，4 ，11，13，13，8
+     **/
+    public boolean verifyPostorder(int[] postorder) {
+        if (postorder == null || postorder.length == 0) {
+            return true;
+        }
+        return dfs(postorder, 0, postorder.length - 1);
+    }
+
+    public boolean verifyPostorderDfs(int[] postorder, int left, int right) {
+        if (left > right) {
+            //说明只有一个节点了
+            return true;
+        }
+        //后续的最后一个，也就是根节点、
+        int end = postorder[right];
+        int i = 0;
+        for (i = left; i < right; i++) {
+            if (postorder[i] > end) {
+                //也就是找到了子节点的前半部分。
+                break;
+            }
+        }
+        for (int j = left; j < i; j++) {
+            if (postorder[j] > end) {
+                //在前面找到了比 根节点 大的 说明不是搜索二叉树
+                return false;
+            }
+
+        }
+        for (int j = i; j < right; j++) {
+            //在右子树中，一旦找到比根节点小的，说明不是搜索二叉树
+            if (postorder[j] < end) {
+                return false;
+            }
+        }
+        return verifyPostorderDfs(postorder, left, i - 1) && verifyPostorderDfs(postorder, i, right - 1);
+    }
+
+
+    /**
      * 二叉搜索树的中序排列是有序的。
+     *
      * @param sequence
      * @return
      */
-    public boolean VerifySquenceOfBST(int [] sequence) {
-        if(sequence == null || sequence.length ==0){return false;}
-        return dfs(sequence,0,sequence.length-1);
+    public boolean VerifySquenceOfBST(int[] sequence) {
+        if (sequence == null || sequence.length == 0) {
+            return true;
+        }
+        return dfs(sequence, 0, sequence.length - 1);
     }
 
-    public boolean dfs(int[] array,int left,int right){
-        if(left>right){
+    public boolean dfs(int[] array, int left, int right) {
+        if (left > right) {
             //只有一个节点
-            return  true;
+            return true;
         }
         //后序的最后一个是根节点。
         int root = array[right];
         int i = 0;
-        for (i = left;i<right;i++){
+        for (i = left; i < right; i++) {
             //后序遍历中，通过找到比根节点大的，来区分左右子树
-            if(array[i]>root){
+            if (array[i] > root) {
                 break;
             }
         }
-        for(int j=i;j<right;j++){
+        for (int j = i; j < right; j++) {
             //在右子树中，一旦找到比根节点小的，说明不是搜索二叉树
-            if(array[j]<root){
+            if (array[j] < root) {
                 return false;
             }
         }
-        return dfs(array,left,i-1) && dfs(array,i,right-1);
+        return dfs(array, left, i - 1) && dfs(array, i, right - 1);
     }
 
 
