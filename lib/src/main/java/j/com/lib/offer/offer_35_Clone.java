@@ -6,10 +6,11 @@ package j.com.lib.offer;
 public class offer_35_Clone {
 
     public static void main(String[] args) {
+
         RandomListNode root = RandomListNode.getRandom();
         Clone(root);
         while (root != null) {
-            System.out.println("label:"+ root.label);
+            System.out.println("label:" + root.label);
             root = root.next;
         }
     }
@@ -22,7 +23,7 @@ public class offer_35_Clone {
         //每个结点都复制一个
         RandomListNode currentNode = pHead;
         while (currentNode != null) {
-            RandomListNode cloneNode = new RandomListNode(currentNode.label+"1");
+            RandomListNode cloneNode = new RandomListNode(currentNode.label + "1");
             RandomListNode tempNode = currentNode.next;
             currentNode.next = cloneNode;
             cloneNode.next = tempNode;
@@ -31,7 +32,10 @@ public class offer_35_Clone {
         //将随机节点也复制一下
         currentNode = pHead;
         while (currentNode != null) {
-            pHead.next.random = currentNode.random == null ? null : currentNode.random.next;
+            //链表 1-1‘-2-2‘-3-3‘-4-4‘-5-5‘-6-6‘
+            //随机 1-  -3-  -5-  -6-  -2-  -4
+            //那么复制后， 1‘的随机指向是应该是 1的随机指向3的next,3'
+            currentNode.next.random = currentNode.random == null ? null : currentNode.random.next;
             currentNode = currentNode.next.next;
         }
         currentNode = pHead;
