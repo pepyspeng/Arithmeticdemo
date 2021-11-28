@@ -2,6 +2,8 @@ package j.com.lib.offer;
 
 import java.util.HashMap;
 
+import j.com.lib.bean.ListNode;
+
 /**
  * 最长不含重复字符的子字符串
  * 输入: "abcabcbb"
@@ -10,65 +12,40 @@ import java.util.HashMap;
  */
 public class offer_58_lengthOfLongestSubstring {
     public static void main(String[] args) {
-        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
+//        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
     }
 
-    public static String minWindow(String s, String t) {
-        HashMap<Character, Integer> need = new HashMap<>();
-        HashMap<Character, Integer> window = new HashMap<>();
-        for (char c : t.toCharArray()) {
-            need.put(c, need.getOrDefault(c, 0) + 1);
+    /**
+     * 使用滑动窗口解决
+     *
+     * @param str
+     * @return
+     */
+    public int lengthOfLongestSubstring2(String str) {
+        if (str == null || str.length() == 0) {
+            return 0;
         }
+        HashMap<Character, Integer> map = new HashMap<>();
         int left = 0;
         int right = 0;
-        //是否有效，window 中是否有全部的 target
-        int valid = 0;
-        //记录最小子串的起始索引和长度
-        int start = 0;
-        int length = Integer.MAX_VALUE;
-        while (right < s.length()) {
-            //即将放入窗口的字符
-            char c = s.charAt(right);
-            //右移窗口
+        int length = 0;
+        int n = str.length();
+        while (right < n) {
+            char c = str.charAt(right);
             right++;
-            //如果目标中有这个字符，窗口内数据要移动
-            if (need.containsKey(c)) {
-                //先把当前字符放入窗口
-                window.put(c, window.getOrDefault(c, 0) + 1);
-                //如果目标和窗口中都有这个字符。
-                if (need.get(c).equals(window.get(c))) {
-                    //那么字符有效。
-                    valid++;
-                }
-            }
-
-            System.out.printf("window:[%d,%d)%n", left, right);
-            //判断左边窗口是否要收缩。
-            while (valid == need.size()) {
-                //在这更新最小覆盖子串
-                if (right - left < length) {
-                    start = left;
-                    length = right - left;
-                }
-                //d 是即将移除窗口的字符
-                char d = s.charAt(left);
-                //左移窗口
+            map.put(c, map.getOrDefault(c, 0) + 1);
+            while (map.getOrDefault(c, 0) > 1) {
+                //如果大于1，说明已经有重复的了。就要移动窗口左边
+                //将要移除窗口的字符
+                char d = str.charAt(left);
                 left++;
-                //进行窗口数据的更新
-                if (need.containsKey(d)) {
-                    //如果目标和窗口中都有这个字符。
-                    if (window.getOrDefault(d, 0).equals(need.getOrDefault(d, 0))) {
-                        //那么字符有效。
-                        valid--;
-                    }
-                    window.put(d, window.getOrDefault(d, 0) - 1);
-                }
+                //更新窗口数据
+                map.put(d, map.getOrDefault(d, 0) - 1);
             }
+            length = Math.max(length, right - left);
         }
-        return length == Integer.MAX_VALUE ? "" : s.substring(start, length);
+        return length;
     }
-
-
 
 
     public int lengthOfLongestSubstring1(String str) {
