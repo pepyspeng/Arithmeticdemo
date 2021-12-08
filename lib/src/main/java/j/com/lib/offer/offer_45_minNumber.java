@@ -14,7 +14,11 @@ import java.util.Arrays;
  */
 public class offer_45_minNumber {
 
-    public String minNumber(int[] nums) {
+    public static void main(String[] args) {
+        System.out.println(minNumber(new int[]{3, 30, 34, 5, 9}));
+    }
+
+    public static String minNumber(int[] nums) {
         String[] array = new String[nums.length];
         for (int i = 0; i < nums.length; i++) {
             array[i] = nums[i] + "";

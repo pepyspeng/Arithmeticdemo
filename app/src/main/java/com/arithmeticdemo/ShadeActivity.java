@@ -25,7 +25,7 @@ public class ShadeActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shade);
-        Glide.with(this).load("").into(new ImageView(this));
+//        Glide.with(this).load("").into(new ImageView(this));
 //        SparseArray sa = new SparseArray<>();
 //        sa.put("","12");
     }

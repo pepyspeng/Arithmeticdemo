@@ -10,6 +10,54 @@ package j.com.lib.offer;
  * return true
  */
 public class offer_12_exist {
+
+    public boolean exist2(char[][] board, String word) {
+        if (board.length == 0 || board[0].length == 0) {
+            return false;
+        }
+        int row = board.length;
+        int column = board[0].length;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                if (dfs2(board, i, j, word.toCharArray(), 0)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param board  数组
+     * @param row    横坐标 x
+     * @param column 纵坐标 y
+     * @param target 目标数组
+     * @param k      目标数组的index
+     * @return
+     */
+    public boolean dfs2(char[][] board, int row, int column, char[] target, int k) {
+        //先判断 x,y是否越界
+        if (row < 0 || row >= board.length || column < 0 || column >= board[0].length ||
+                //再判断是够相等
+                board[row][column] != target[k]) {
+            return false;
+        }
+
+        if (k == target.length - 1) {
+            //全部搜索完毕了
+            return true;
+        }
+        //代表已经搜索过了。
+        board[row][column] = ' ';
+        boolean result = dfs2(board, row + 1, column, target, k + 1) ||
+                dfs2(board, row - 1, column, target, k + 1) ||
+                dfs2(board, row, column + 1, target, k + 1) ||
+                dfs2(board, row, column - 1, target, k + 1);
+        board[row][column] = target[k];
+        return result;
+    }
+
+
     public boolean exist1(char[][] board, String word) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {

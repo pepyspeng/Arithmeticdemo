@@ -1,6 +1,8 @@
 package j.com.lib.offer;
 
 
+import j.com.lib.bean.TreeNode;
+
 /**
  * @author : zhupp
  * @date : 2021/9/2
@@ -9,6 +11,34 @@ package j.com.lib.offer;
  */
 public class offer_33_VerifySquenceOfBST {
     public static void main(String[] args) {
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        return isBST(root, null, null);
+    }
+
+    /**
+     * @param root 根节点
+     * @param min  最小值
+     * @param max  最大值
+     * @return
+     */
+    private boolean isBST(TreeNode root, TreeNode min, TreeNode max) {
+        if (root == null) {
+            //走到底了。
+            return true;
+        }
+        if (min != null && min.val >= root.val) {
+            //如果根节点小于等于 最小节点 ，那么就不是搜索二叉树
+            return false;
+        }
+        if (max != null && max.val <= root.val) {
+            //如果根节点 大于等于 最大节点，也不是
+            return false;
+        }
+        //左节点，最大节点就是自己，最小节点还是min
+        //右节点，最大节点是max,最小节点是自己
+        return isBST(root.left, min, root) && isBST(root.right, root, max);
     }
 
     /**

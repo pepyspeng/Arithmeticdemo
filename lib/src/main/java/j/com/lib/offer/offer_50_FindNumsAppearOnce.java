@@ -29,7 +29,6 @@ public class offer_50_FindNumsAppearOnce {
             char c = s.charAt(i);
             map.put(c, !map.containsKey(c));
         }
-
         for (int i = 0; i < length; i++) {
             char c = s.charAt(i);
             if (map.get(c)) {

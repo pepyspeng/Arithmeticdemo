@@ -29,24 +29,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        TextView mButton = findViewById(R.id.tv1);
-        ObjectAnimator oaY=ObjectAnimator.ofFloat(mButton, "rotationY", 0,360);
-        oaY.setStartDelay(2000);
-        oaY.setDuration(5000);
-        oaY.start();
-        // 步骤1:创建 需要设置动画的 视图View
-        Animation translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation_rotate);
-        // 步骤2:创建 动画对象 并传入设置的动画效果xml文件
-        mButton.startAnimation(translateAnimation);
-        // 步骤3:播放动画
-
-        Handler handler = new Handler(new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                return false;
-            }
-        });
+        Log.e(TAG, "onCreate");
+//        TextView mButton = findViewById(R.id.tv1);
+//        ObjectAnimator oaY=ObjectAnimator.ofFloat(mButton, "rotationY", 0,360);
+//        oaY.setStartDelay(2000);
+//        oaY.setDuration(5000);
+//        oaY.start();
+//        // 步骤1:创建 需要设置动画的 视图View
+//        Animation translateAnimation = AnimationUtils.loadAnimation(this, R.anim.view_animation_rotate);
+//        // 步骤2:创建 动画对象 并传入设置的动画效果xml文件
+//        mButton.startAnimation(translateAnimation);
+//        // 步骤3:播放动画
+//
+//        Handler handler = new Handler(new Handler.Callback() {
+//            @Override
+//            public boolean handleMessage(Message msg) {
+//                return false;
+//            }
+//        });
     }
 
     public void OnTv1Click(View view) {
@@ -57,6 +57,42 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy");
+    }
 
     private void JobService() {
         JobScheduler mJobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);

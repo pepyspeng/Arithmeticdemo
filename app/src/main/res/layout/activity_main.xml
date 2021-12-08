@@ -7,15 +7,26 @@
     android:gravity="center"
     tools:context=".MainActivity"
     >
-
-    <TextView
-        android:id="@+id/tv1"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:onClick="OnTv1Click"
-        android:text="跳转到Acitivty与Fragment"
-        android:background="@drawable/bg_ripple"
-        />
+        android:background="@color/colorPrimary"
+        >
+<!--        <TextView-->
+<!--            android:id="@+id/tv1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:padding="10dp"-->
+<!--            android:onClick="OnTv1Click"-->
+<!--            android:text="跳转到Acitivty与Fragment"-->
+<!--            android:background="@drawable/bg_ripple"-->
+<!--            />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ic_launcher"
+            />
+    </FrameLayout>
+
 
 </LinearLayout>

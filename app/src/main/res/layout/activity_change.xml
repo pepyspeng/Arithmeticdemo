@@ -8,12 +8,12 @@
     tools:context=".MainActivity"
     >
 
-   <fragment
-       android:name="com.arithmeticdemo.demo.ChangeFragment"
-       android:id="@+id/fragment_container"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       />
+<!--   <fragment-->
+<!--       android:name="com.arithmeticdemo.demo.ChangeFragment"-->
+<!--       android:id="@+id/fragment_container"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="match_parent"-->
+<!--       />-->
 
 
 </LinearLayout>
