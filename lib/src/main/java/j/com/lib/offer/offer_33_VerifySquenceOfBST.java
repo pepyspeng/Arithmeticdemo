@@ -11,6 +11,7 @@ import j.com.lib.bean.TreeNode;
  */
 public class offer_33_VerifySquenceOfBST {
     public static void main(String[] args) {
+        System.out.println(new offer_33_VerifySquenceOfBST().verifyPostorder(new int[]{3,5,4 ,11,13,13,8}));
     }
 
     public boolean isValidBST(TreeNode root) {
@@ -57,7 +58,7 @@ public class offer_33_VerifySquenceOfBST {
         if (postorder == null || postorder.length == 0) {
             return true;
         }
-        return dfs(postorder, 0, postorder.length - 1);
+        return verifyPostorderDfs(postorder, 0, postorder.length - 1);
     }
 
     public boolean verifyPostorderDfs(int[] postorder, int left, int right) {

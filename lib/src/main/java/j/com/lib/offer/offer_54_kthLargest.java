@@ -40,9 +40,9 @@ public class offer_54_kthLargest {
             // 若 k = 0k=0 ，代表已找到目标节点，无需继续遍历，因此直接返回；
             return;
         }
-        //执行 k = k - 1k=k−1 （即从 kk 减至 00 ）
+        //执行 k = k - 1 （即从 kk 减至 00 ）
         if(--position == 0){
-            // 若 k = 0k=0 ，代表当前节点为第 kk 大的节点，因此记录 res = root.valres=root.val ；
+            // 若 k = 0 ，代表当前节点为第 k 大的节点，因此记录 res = root.val
             result = root.val;
         }
         dfs(root.left);
