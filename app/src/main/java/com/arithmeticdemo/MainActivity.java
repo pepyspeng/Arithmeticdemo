@@ -3,10 +3,16 @@ package com.arithmeticdemo;
 import android.animation.ObjectAnimator;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,12 +30,27 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MutableLiveData<Integer> liveData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e(TAG, "onCreate");
+
+        liveData = new MutableLiveData<>();
+
+        liveData.observe(this, aBoolean -> System.out.println("aBoolean:" + aBoolean));
+        findViewById(R.id.img).setOnClickListener(v -> {
+            liveData.setValue(1);
+            liveData.setValue(2);
+            liveData.setValue(2);
+            liveData.setValue(2);
+            liveData.setValue(2);
+            liveData.setValue(2);
+            liveData.setValue(7);
+            liveData.setValue(8);
+        });
 //        TextView mButton = findViewById(R.id.tv1);
 //        ObjectAnimator oaY=ObjectAnimator.ofFloat(mButton, "rotationY", 0,360);
 //        oaY.setStartDelay(2000);

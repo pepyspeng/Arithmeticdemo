@@ -9,9 +9,18 @@ package j.com.lib.offer;
 public class offer_10_NumberFor1 {
 
     public static void main(String[] args){
+
+        System.out.println(add(5,8));
         System.out.println(
                 "count:"+numberFor1(1087865780)
         );
+    }
+
+    public static int add(int a, int b) {
+        if(b == 0){
+            return a;
+        }
+        return add(a^b,(a&b)<<1);
     }
 
     /**
