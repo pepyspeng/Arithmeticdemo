@@ -11,8 +11,38 @@ import java.util.List;
  */
 public class offer_51_FindContinuousSequence {
     public static void main(String[] args) {
-        System.out.println(FindContinuousSequence1(9));
+        System.out.println(findContinuousSequence(9));
     }
+
+
+    public static int[][] findContinuousSequence(int target) {
+        List<int[]> result = new ArrayList<int[]>();
+        int left = 0;
+        int right = 1;
+        int count = 1;
+        while (left < right) {
+            if (count == target) {
+                int[] temp = new int[right - left + 1];
+                for (int i = left; i <= right ; i++) {
+                    temp[i - left] = i;
+                }
+                result.add(temp);
+
+            }
+            //相等的时候也要移除右边界， 否则会死循环
+            if (count >= target) {
+                count -= left;
+                left++;
+            } else if (count < target) {
+                right++;
+                count += right;
+
+            }
+        }
+
+        return result.toArray(new int[0][]);
+    }
+
     public static int[][] FindContinuousSequence1(int target) {
         List<int[]> result = new ArrayList<>();
 //        if (target < 3) {
@@ -26,7 +56,7 @@ public class offer_51_FindContinuousSequence {
             if (target == count) {
                 int[] ans = new int[right - left + 1];
                 for (int i = left; i <= right; i++) {
-                    ans[i-left] = i;
+                    ans[i - left] = i;
                 }
                 result.add(ans);
                 left++;
@@ -38,6 +68,7 @@ public class offer_51_FindContinuousSequence {
         }
         return result.toArray(new int[0][]);
     }
+
     public static ArrayList<ArrayList<Integer>> FindContinuousSequence(int target) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         if (target < 3) {
