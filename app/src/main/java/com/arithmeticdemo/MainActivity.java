@@ -30,7 +30,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MutableLiveData<Integer> liveData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +37,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.e(TAG, "onCreate");
 
-        liveData = new MutableLiveData<>();
-
-        liveData.observe(this, aBoolean -> System.out.println("aBoolean:" + aBoolean));
         findViewById(R.id.img).setOnClickListener(v -> {
-            liveData.setValue(1);
-            liveData.setValue(2);
-            liveData.setValue(2);
-            liveData.setValue(2);
-            liveData.setValue(2);
-            liveData.setValue(2);
-            liveData.setValue(7);
-            liveData.setValue(8);
+            ChangeActivity.callActivity(this);
+
         });
 //        TextView mButton = findViewById(R.id.tv1);
 //        ObjectAnimator oaY=ObjectAnimator.ofFloat(mButton, "rotationY", 0,360);
