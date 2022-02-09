@@ -9,7 +9,10 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.Binder;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +26,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.arithmeticdemo.binder.IPlus;
+import com.arithmeticdemo.binder.Stub;
 import com.arithmeticdemo.demo.ChangeActivity;
 import com.arithmeticdemo.service.DownJobService;
 
@@ -58,6 +63,22 @@ public class MainActivity extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+    }
+
+    public void executorBinder() {
+        Binder binder = new Stub();
+        IInterface iInterface = new IPlus() {
+            @Override
+            public int add(int a, int b) {
+                return a + b;
+            }
+
+            @Override
+            public IBinder asBinder() {
+                return null;
+            }
+        };
+        binder.attachInterface(iInterface, "add two int");
     }
 
     public void OnTv1Click(View view) {

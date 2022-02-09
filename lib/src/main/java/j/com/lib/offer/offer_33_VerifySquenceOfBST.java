@@ -11,7 +11,7 @@ import j.com.lib.bean.TreeNode;
  */
 public class offer_33_VerifySquenceOfBST {
     public static void main(String[] args) {
-        System.out.println(new offer_33_VerifySquenceOfBST().verifyPostorder(new int[]{3,5,4 ,11,13,13,8}));
+        System.out.println(new offer_33_VerifySquenceOfBST().verifyPostorder(new int[]{3,5,4 ,11,13,12,8}));
     }
 
     public boolean isValidBST(TreeNode root) {
@@ -52,7 +52,7 @@ public class offer_33_VerifySquenceOfBST {
      * 二叉搜索树的
      * 中序遍历是 顺序的，也就是
      * 2、3、4 、8、11、12、13
-     * 后续遍历： 3，5，4 ，11，13，13，8
+     * 后续遍历： 3，5，4 ，11，13，12，8
      **/
     public boolean verifyPostorder(int[] postorder) {
         if (postorder == null || postorder.length == 0) {
@@ -69,18 +69,13 @@ public class offer_33_VerifySquenceOfBST {
         //后续的最后一个，也就是根节点、
         int end = postorder[right];
         int i = 0;
+        int position =0;
         for (i = left; i < right; i++) {
+            position = i;
             if (postorder[i] > end) {
                 //也就是找到了子节点的前半部分。
                 break;
             }
-        }
-        for (int j = left; j < i; j++) {
-            if (postorder[j] > end) {
-                //在前面找到了比 根节点 大的 说明不是搜索二叉树
-                return false;
-            }
-
         }
         for (int j = i; j < right; j++) {
             //在右子树中，一旦找到比根节点小的，说明不是搜索二叉树
@@ -88,6 +83,7 @@ public class offer_33_VerifySquenceOfBST {
                 return false;
             }
         }
+        System.out.println("I:"+i+"--position:"+position);
         return verifyPostorderDfs(postorder, left, i - 1) && verifyPostorderDfs(postorder, i, right - 1);
     }
 

@@ -1,5 +1,6 @@
 package j.com.lib.offer;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class offer_59_reverseWords {
@@ -12,11 +13,13 @@ public class offer_59_reverseWords {
 
     public static String reverseWords(String s) {
         String[] array = s.trim().split("\\s+");
+        System.out.println("---:"+Arrays.toString(array));
         StringBuilder sb = new StringBuilder();
         for (int i = array.length -1;i>=0;i--){
             if(array[i].equals(" ")){
                 continue;
             }
+            System.out.println("--:"+array[i]+"--"+array[i].length());
             sb.append(array[i]).append(" ");
         }
         return  sb.toString().trim();

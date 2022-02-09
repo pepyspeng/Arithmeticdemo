@@ -8,8 +8,8 @@ package j.com.lib.offer;
  */
 public class offer_55_search {
     public static void main(String[] args) {
-        int[] array = new int[]{1, 2, 4, 4, 4, 4, 4, 7};
-        System.out.println(search1(array, 9));
+        int[] array = new int[]{1};
+        System.out.println(search1(array, 1));
     }
 
     /**
@@ -21,14 +21,36 @@ public class offer_55_search {
         if (array == null || array.length == 0) {
             return 0;
         }
-        int left = getLeftIndex(array, target);
-        int right = getRightIndex(array, target);
+        int left = getLeftIndex1(array, target);
+        int right = getLeftIndex1(array, target+1);
         System.out.println(left + "--" + right);
         if (left == -1 || right == -1) {
             return 0;
         }
-        return right - left + 1;
+        return right - left ;
     }
+    //设计一个查找左侧位置的算法
+    public static int getLeftIndex1(int[] array,int target){
+        int left = 0;
+        int right = array.length -1;
+        while(left<=right){
+            int mid = left +(right-left)/2;
+            if(array[mid] < target){
+                //中间的数比目标的数 小，说明数在左边
+                left = mid+1;
+            }else if(array[mid]> target){
+                right = mid -1;
+            }else{
+                //找左侧边界，往左继续挪
+                right = mid - 1;
+            }
+        }
+        if(left < 0 || left > array.length ){
+            return -1;
+        }
+        return left;
+    }
+
 
     public static int getRightIndex(int[] nums, int target) {
         int left = 0;

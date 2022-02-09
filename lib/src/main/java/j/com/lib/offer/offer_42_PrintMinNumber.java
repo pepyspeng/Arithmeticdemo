@@ -20,7 +20,11 @@ public class offer_42_PrintMinNumber {
         }
         //用定义好的排序规则排序
         //若 x + y > y + x, 则表明 x “大于” y，sort默认升序排序，因此x 和 y 交换位置，实现排序
-        Arrays.sort(nums, (s1, s2) -> (s1 + s2).compareTo(s2+s1));
+        Arrays.sort(nums, (s1, s2) -> {
+            int x = (s1 + s2).compareTo(s2 + s1);
+            System.out.println(x);
+            return x;
+        });
         StringBuilder sb = new StringBuilder();
         for (String s:nums){
             sb.append(s);

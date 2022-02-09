@@ -22,6 +22,36 @@ public class lt_top_2_addTwoNumbers {
 //        System.out.println(addTwoNumbers(a,b));
     }
 
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        //用来做虚拟头部
+        ListNode temp = new ListNode(-1);
+        ListNode p = temp;
+        //记录进位
+        int carry = 0;
+        while(l1!=null || l2 !=null || carry>0){
+            //只有有一个不为0，或者进位大于0的情况，就继续
+            //先加上进位
+            int val = carry;
+            if(l1 !=null){
+                val +=l1.val;
+                l1 = l1.next;
+            }
+            if(l2 !=null){
+                val += l2.val;
+                l2 = l2.next;
+            }
+            //进位取除数
+            carry = val / 10;
+            //当前数字取模
+            val = val%10;
+            p.next = new ListNode(val);
+            p = p.next;
+        }
+        return temp.next;
+    }
+
+
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
         ListNode sumHead = new ListNode(-1);
