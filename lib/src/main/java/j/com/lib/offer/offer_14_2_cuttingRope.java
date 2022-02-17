@@ -10,6 +10,31 @@ package j.com.lib.offer;
  * 解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
  */
 public class offer_14_2_cuttingRope {
+    /**
+     * 循环求余数，可以避免越界的问题
+     * 答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。
+     *
+     * @param n
+     * @return
+     */
+    public int cuttingRop2(int n) {
+        if (n <= 3) {
+            //要求m,n都大于1，所以最少切2段，第二段也就是1.
+            return n - 1;
+        }
+        //有可能会超过int最大值
+        long res = 1;
+        //用来求余
+        int p = 1000000007;
+
+        while (n > 4) {
+            //大于4，就还可以继续计算，不能是大于3吗？大于3，n最后就可以是1，乘以1，不如乘以4
+            res = res * 3 % p;
+            n -= 3;
+        }
+        //最后剩下的可能是 4，3，2，直接乘以就可以了
+        return (int) (res * n % p);
+    }
 
     /**
      * 求出当绳子以长度3，等分时，乘积最大
@@ -24,16 +49,16 @@ public class offer_14_2_cuttingRope {
         }
         int a = n / 3;
         int b = n % 3;
-        if(b == 0){
+        if (b == 0) {
             //说明正好分隔完成， a个3相乘=3^a
-            return (int) Math.pow(3,a);
-        }else if(b== 1){
+            return (int) Math.pow(3, a);
+        } else if (b == 1) {
             //余1的话，相乘就浪费了。不如 将1和一个3合并(1*3<4)
             //例如n=10,则 3*3*3*1=27。3*3*4 = 36;
-            return (int)Math.pow(3,a-1)*4;
-        }else{
+            return (int) Math.pow(3, a - 1) * 4;
+        } else {
             //b=2，直接乘
-            return (int)Math.pow(3,a)*2;
+            return (int) Math.pow(3, a) * 2;
         }
     }
 }

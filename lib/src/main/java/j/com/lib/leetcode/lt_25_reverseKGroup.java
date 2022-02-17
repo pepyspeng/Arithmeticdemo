@@ -26,6 +26,7 @@ public class lt_25_reverseKGroup {
         }
         ListNode a = head;
         ListNode b = head;
+        //base case
         for (int i = 0; i < k; i++) {
             if (b == null) {
                 return head;
