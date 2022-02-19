@@ -2,6 +2,7 @@ package com.arithmeticdemo.demo;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 public class ScrollView1 extends android.widget.ScrollView {
@@ -29,6 +30,8 @@ public class ScrollView1 extends android.widget.ScrollView {
         maxY = getChildAt(0).getMeasuredHeight() - getMeasuredHeight();
     }
 
+    private static final String TAG = "ScrollView1";
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         final float x = ev.getX();
@@ -37,9 +40,11 @@ public class ScrollView1 extends android.widget.ScrollView {
         final int action = ev.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                Log.e(TAG, "dispatchTouchEvent: +ACTION_DOWN");
                 getParent().getParent().requestDisallowInterceptTouchEvent(true);
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.e(TAG, "dispatchTouchEvent: +ACTION_MOVE");
                 System.out.println("getScrollY():" + getScrollY() + "--maxY:" + maxY + "-result:" + ((getScrollY() > 0 && getScrollY() < maxY)));
                 if (getScrollY() > 0 && getScrollY() < maxY)
                     getParent().requestDisallowInterceptTouchEvent(true);
@@ -47,7 +52,11 @@ public class ScrollView1 extends android.widget.ScrollView {
                     getParent().requestDisallowInterceptTouchEvent(false);
                 break;
             case MotionEvent.ACTION_UP:
+                Log.e(TAG, "dispatchTouchEvent: +ACTION_UP");
 //                getParent().getParent().requestDisallowInterceptTouchEvent(false);
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                Log.e(TAG, "dispatchTouchEvent: +ACTION_CANCEL");
                 break;
         }
 

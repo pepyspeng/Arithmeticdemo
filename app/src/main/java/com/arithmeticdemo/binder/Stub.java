@@ -12,9 +12,9 @@ public class Stub extends Binder {
     @Override
     protected boolean onTransact(int code, @NonNull Parcel data, @Nullable Parcel reply, int flags) throws RemoteException {
         switch (code) {
-            case Stub.add:
-
-                break;
+//            case Stub.add:
+//
+//                break;
            
         }
 

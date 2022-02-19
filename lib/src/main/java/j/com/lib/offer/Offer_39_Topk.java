@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 public class Offer_39_Topk {
     static int result = -1;
     public static void main(String[] args) {
-        int[] array = new int[]{10, 02, 30, 12, 20, 51};
+        int[] array = new int[]{2,1};
         Offer_39_Topk topK = new Offer_39_Topk();
         System.out.println(Arrays.toString(topK.getLeastNumbers(array, 2)));
 //        System.out.println(Arrays.toString(topK.getTopK(array, 9)));
