@@ -8,32 +8,51 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
+import j.com.lib.bean.Node;
 import j.com.lib.bean.TreeNode;
 
 public class MyClass {
 
+    final Node node;
+
+    public MyClass() {
+        node = new Node(1);
+        node.left = new Node(2);
+    }
+
+    public void textClass() {
+        int value = 1;
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+    }
+
 
     public static void main(String[] args) {
-        searchInsert(new int[]{1,3,5,6},7);
+        searchInsert(new int[]{1, 3, 5, 6}, 7);
     }
 
 
     public static int searchInsert(int[] nums, int target) {
+
         int left = 0;
-        int right = nums.length-1;
+        int right = nums.length - 1;
         int mid = 0;
-        if(target>nums[right])
-            return right+1;
-        if(target<nums[0])
+        if (target > nums[right])
+            return right + 1;
+        if (target < nums[0])
             return 0;
         while (left <= right) {
-            mid = (left+right) / 2;
+            mid = (left + right) / 2;
             if (nums[mid] < target) {
-                left = mid+1;
-            }else if(nums[mid] == target){
+                left = mid + 1;
+            } else if (nums[mid] == target) {
                 return mid;
-            }else{
-                right = mid-1;
+            } else {
+                right = mid - 1;
             }
         }
         return left;
