@@ -11,9 +11,34 @@ import java.util.List;
  */
 public class offer_51_FindContinuousSequence {
     public static void main(String[] args) {
-        System.out.println(findContinuousSequence(9));
+        System.out.println(findContinuousSequence1(9));
     }
 
+
+    public static int[][] findContinuousSequence1(int target) {
+        List<int[]> res = new ArrayList<>();
+        int left = 1;
+        int right = 2;
+        int sum = 3;
+        while (left < right) {
+            if (sum == target) {
+                int[] temp = new int[right - left + 1];
+                for (int i = left; i <= right; i++) {
+                    temp[i - left] = i;
+                }
+                res.add(temp);
+                sum -= left;
+                left++;
+            } else if (sum > target) {
+                sum -= left;
+                left++;
+            } else {
+                right++;
+                sum += right;
+            }
+        }
+        return res.toArray(new int[0][]);
+    }
 
     public static int[][] findContinuousSequence(int target) {
         List<int[]> result = new ArrayList<int[]>();
@@ -23,7 +48,7 @@ public class offer_51_FindContinuousSequence {
         while (left < right) {
             if (count == target) {
                 int[] temp = new int[right - left + 1];
-                for (int i = left; i <= right ; i++) {
+                for (int i = left; i <= right; i++) {
                     temp[i - left] = i;
                 }
                 result.add(temp);
