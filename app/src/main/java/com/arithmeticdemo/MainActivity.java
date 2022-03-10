@@ -9,7 +9,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.IInterface;
@@ -28,9 +30,13 @@ import android.widget.TextView;
 
 import com.arithmeticdemo.binder.IPlus;
 import com.arithmeticdemo.binder.Stub;
+import com.arithmeticdemo.demo.B;
 import com.arithmeticdemo.demo.ChangeActivity;
 import com.arithmeticdemo.service.DownJobService;
 
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,10 +47,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.e(TAG, "onCreate");
-
+//        B b = new B();
         findViewById(R.id.img).setOnClickListener(v -> {
-            ChangeActivity.callActivity(this);
+//            ChangeActivity.callActivity(this);
+//            getClassLoader1(MainActivity.this);
 
+            B b = new B();
+            B.printlnStatic();
         });
 //        TextView mButton = findViewById(R.id.tv1);
 //        ObjectAnimator oaY=ObjectAnimator.ofFloat(mButton, "rotationY", 0,360);
@@ -63,6 +72,41 @@ public class MainActivity extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+    }
+
+    public void getClassLoader2(Context context) {
+
+    }
+
+    public void getClassLoader1(Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            Log.d("@@##", "not support");
+            return;
+        } else {
+            Log.d("@@##", "Support");
+        }
+        ClassLoader classLoader = context.getClassLoader();
+        Log.d("@@##", "classLoader: " + classLoader.getClass());
+        Method method = null;
+        try {
+            method = ClassLoader.class.getDeclaredMethod("findLibrary", String.class);
+
+            String path = (String) method.invoke(classLoader, "native-lib");
+            Log.d("@@##", "path " + path);
+            File file = new File(path);
+            if (file.exists()) {
+                Log.d("@@##", "file exist");
+            } else {
+                Log.d("@@##", "file not exist");
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     public void executorBinder() {

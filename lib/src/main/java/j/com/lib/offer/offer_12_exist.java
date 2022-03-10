@@ -1,15 +1,24 @@
 package j.com.lib.offer;
 
+
 /**
  * 矩阵中的路径
- * [["A","B","C","E"]
- * ,["S","F","C","S"]
- * ,["A","D","E","E"]]
+ * [['A','B','C','E']
+ * ,['S','F','C','S']
+ * ,['A','D','E','E']]
  * word = "ABCCED"
  * <p>
  * return true
  */
 public class offer_12_exist {
+
+    public static void main(String[] args) {
+        offer_12_exist exist = new offer_12_exist();
+        char[][] arr = new char[][]{
+                {'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}
+        };
+        System.out.println(exist.exist2(arr,"BCCED"));
+    }
 
     public boolean exist2(char[][] board, String word) {
         if (board.length == 0 || board[0].length == 0) {
