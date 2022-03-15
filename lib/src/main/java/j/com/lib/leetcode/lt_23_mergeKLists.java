@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 import j.com.lib.bean.ListNode;
 
 /**
- * 合并K个升序链表
+ *
  */
 public class lt_23_mergeKLists {
 
