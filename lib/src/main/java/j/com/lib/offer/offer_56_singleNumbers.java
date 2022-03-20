@@ -43,6 +43,11 @@ public class offer_56_singleNumbers {
         return res;
     }
 
+    /**
+     *
+     * @param nums
+     * @return
+     */
     public int[] singleNumbers1(int[] nums) {
         //因为相同的数字异或为0，任何数字与0异或结果是其本身。
         //所以遍历异或整个数组最后得到的结果就是两个只出现一次的数字异或的结果：即 z = x ^ y
