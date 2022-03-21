@@ -16,8 +16,8 @@ public class offer_53_LeftRotateString {
 //         return str.substring(n,str.length())+str.substring(0,n);
         int len = str.length();
         StringBuilder sb = new StringBuilder();
-        //先向 sb 添加 “第 n + 1n+1 位至末位的字符”
-        //再向 sb 添加 “首位至第 nn 位的字符” ；
+        //先向 sb 添加 “第 n -- n+1 位至末位的字符”
+        //再向 sb 添加 “首位至第 n 位的字符” ；
         for(int i = n;i<len+n;i++){
             sb.append(str.charAt(i%len));
         }
