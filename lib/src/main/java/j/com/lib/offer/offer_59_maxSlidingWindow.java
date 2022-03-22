@@ -1,7 +1,6 @@
 package j.com.lib.offer;
 
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.LinkedList;
 
 public class offer_59_maxSlidingWindow {
