@@ -38,9 +38,11 @@ public class offer_36_Convert {
         midDfs(root.left);
         if (pre == null) {
             //说明这里是头结点
+            //pre为空，不需要让pre.right指向当前
             head = root;
         } else {
             //上一个节点的右节点指向当前节点
+            //只需要让上一节点 右边指向 当前节点
             pre.right = root;
         }
         //当前节点的左节点指向上一节点
