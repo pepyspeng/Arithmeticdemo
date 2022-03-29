@@ -1,12 +1,76 @@
 package j.com.lib.offer;
 
 import j.com.lib.bean.ListNode;
-import j.com.lib.bean.Node;
 
 /**
  * 反转链表
  */
 public class offer_16_reverseNode {
+
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        ListNode node = new ListNode(2);
+        ListNode node1 = new ListNode(3);
+        ListNode node2 = new ListNode(4);
+        ListNode node3 = new ListNode(5);
+        ListNode node4 = new ListNode(6);
+        ListNode node5 = new ListNode(7);
+        head.next = node;
+        node.next = node1;
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = node5;
+        offer_16_reverseNode reverseNode = new offer_16_reverseNode();
+        ListNode temp1 = reverseNode.reverseKGroup(head, 2);
+        while (temp1 != null) {
+            System.out.print(temp1.val + "->");
+            temp1 = temp1.next;
+        }
+    }
+
+
+    public ListNode reverseKGroup(ListNode node, int k) {
+        if (node == null || k == 0) {
+            return node;
+        }
+        ListNode fast = node;
+        //先用快指针移动k个
+        for (int i = 0; i < k; i++) {
+            if (fast == null) {
+                return node;
+            }
+            fast = fast.next;
+        }
+        //然后就反转快慢之间的节点
+        ListNode reverseHead = reverse(node, fast);
+        node.next = reverseKGroup(fast,k);
+        return reverseHead;
+    }
+
+    /**
+     * 1->2->3->4
+     * 返回的就是 4 ： 4->3->2->1
+     *
+     *
+     * @param slow
+     * @param fast
+     * @return
+     */
+    private ListNode reverse(ListNode slow, ListNode fast) {
+        ListNode pre = null;
+        ListNode cur = slow;
+        ListNode next = null;
+        while (cur.val != fast.val) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
 
     /**
      * 递归实现 反转列表
@@ -92,113 +156,4 @@ public class offer_16_reverseNode {
     }
 
 
-    private static ListNode reverseNode(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        ListNode next = null;
-        while (head != null) {
-            ListNode temp = head.next;
-            head.next = next;
-            next = head;
-            head = temp;
-
-        }
-        return next;
-    }
-
-    private static ListNode reverseDepNode(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        ListNode temp = head.next;
-        head.next = null;
-        ListNode resultNode = reverseDepNode(temp);
-        temp.next = head;
-        return resultNode;
-    }
-
-
-    public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        ListNode node = new ListNode(2);
-        ListNode node1 = new ListNode(3);
-        ListNode node2 = new ListNode(4);
-        ListNode node3 = new ListNode(5);
-        ListNode node4 = new ListNode(6);
-        ListNode node5 = new ListNode(7);
-        head.next = node;
-        node.next = node1;
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node5;
-        ListNode temp1 = reverseDepNode(head);
-        while (temp1 != null) {
-            System.out.print(temp1.val + "->");
-            temp1 = temp1.next;
-        }
-    }
-
-
-//
-//    public static ListNode reverseNode(ListNode node){
-//        if(node == null || node.next == null){
-//            return node;
-//        }
-//        ListNode preNode = null;
-//        ListNode nextNode;
-//        while (node !=null){
-//            nextNode = node.next;
-//            node.next = preNode;
-//            preNode = node;
-//            node = nextNode;
-//        }
-//        return preNode;
-//    }
-
-
-    /**
-     * 首先定义一个指针，用于保存下一个节点
-     * 每次循环先保存下一个节点
-     * 然后让当前节点的下一个节点指向前一个节点
-     * 然后让下一节点等于现在的节点--用于下次循环使用
-     * 最后让现在节点等于最开始的下一节点
-     *
-     * @param node
-     * @return
-     */
-    public static ListNode revNodeWhile(ListNode node) {
-        //存储前一个节点
-        ListNode nextNode = null;
-        while (node != null) {
-            ListNode temp = node.next;
-            node.next = nextNode;
-            nextNode = node;
-            node = temp;
-        }
-        return nextNode;
-
-    }
-
-
-    /**
-     * 递归
-     *
-     * @param headNode
-     * @return
-     */
-    public static ListNode revNode(ListNode headNode) {
-        if (headNode == null) {
-            return null;
-        }
-        if (headNode.next == null) {
-            return headNode;
-        }
-        ListNode nextNode = headNode.next;
-        headNode.next = null;
-        ListNode head = revNode(nextNode);
-        nextNode.next = headNode;
-        return head;
-    }
 }

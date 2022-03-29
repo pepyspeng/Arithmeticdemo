@@ -15,7 +15,7 @@ public class lt_76_minWindow {
         System.out.println(minWindow("ADOBECODEBANC", "ABC"));
     }
 
-    public static String minWindow(String s, String t) {
+    public static String  minWindow(String s, String t) {
         //首先声明 窗口map 和 目标 map
         HashMap<Character, Integer> window = new HashMap<>();
         HashMap<Character, Integer> need = new HashMap<>();

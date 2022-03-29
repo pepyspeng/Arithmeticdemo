@@ -24,17 +24,17 @@ public class lt_25_reverseKGroup {
         if (head == null) {
             return null;
         }
-        ListNode a = head;
-        ListNode b = head;
+        ListNode fast = head;
         //base case
         for (int i = 0; i < k; i++) {
-            if (b == null) {
+            if (fast == null) {
                 return head;
             }
-            b = b.next;
+            fast = fast.next;
         }
-        ListNode reverseNode = reverse(a, b);
-        a.next = reverseKGroup(b, k);
+        ListNode slow = head;
+        ListNode reverseNode = reverse(slow, fast);
+        slow.next = reverseKGroup(fast, k);
         return reverseNode;
     }
 
