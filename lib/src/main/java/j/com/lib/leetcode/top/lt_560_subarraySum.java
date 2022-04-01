@@ -12,6 +12,7 @@ public class lt_560_subarraySum {
 
     public int subarraySum(int[] nums, int k) {
         //可以用一个map，记录每个前缀和 出现的次数
+        //key->前缀和,value->前缀和出现的次数
         HashMap<Integer, Integer> map = new HashMap<>();
         //base case 和为0的，出现一次
         map.put(0, 1);
